@@ -23,10 +23,7 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.notebooks.v1beta1',
-    manifest={
-        'Instance',
-    },
+    package="google.cloud.notebooks.v1beta1", manifest={"Instance",},
 )
 
 
@@ -144,6 +141,7 @@ class Instance(proto.Message):
         update_time (~.timestamp.Timestamp):
             Output only. Instance update time.
     """
+
     class AcceleratorType(proto.Enum):
         r"""Definition of the types of hardware accelerators that can be
         used on this instance.
@@ -195,19 +193,20 @@ class Instance(proto.Message):
                 Count of cores of this accelerator.
         """
 
-        type = proto.Field(proto.ENUM, number=1,
-            enum='Instance.AcceleratorType',
-        )
+        type = proto.Field(proto.ENUM, number=1, enum="Instance.AcceleratorType",)
 
         core_count = proto.Field(proto.INT64, number=2)
 
     name = proto.Field(proto.STRING, number=1)
 
-    vm_image = proto.Field(proto.MESSAGE, number=2, oneof='environment',
-        message=environment.VmImage,
+    vm_image = proto.Field(
+        proto.MESSAGE, number=2, oneof="environment", message=environment.VmImage,
     )
 
-    container_image = proto.Field(proto.MESSAGE, number=3, oneof='environment',
+    container_image = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        oneof="environment",
         message=environment.ContainerImage,
     )
 
@@ -221,35 +220,27 @@ class Instance(proto.Message):
 
     machine_type = proto.Field(proto.STRING, number=8)
 
-    accelerator_config = proto.Field(proto.MESSAGE, number=9,
-        message=AcceleratorConfig,
+    accelerator_config = proto.Field(
+        proto.MESSAGE, number=9, message=AcceleratorConfig,
     )
 
-    state = proto.Field(proto.ENUM, number=10,
-        enum=State,
-    )
+    state = proto.Field(proto.ENUM, number=10, enum=State,)
 
     install_gpu_driver = proto.Field(proto.BOOL, number=11)
 
     custom_gpu_driver_path = proto.Field(proto.STRING, number=12)
 
-    boot_disk_type = proto.Field(proto.ENUM, number=13,
-        enum=DiskType,
-    )
+    boot_disk_type = proto.Field(proto.ENUM, number=13, enum=DiskType,)
 
     boot_disk_size_gb = proto.Field(proto.INT64, number=14)
 
-    data_disk_type = proto.Field(proto.ENUM, number=25,
-        enum=DiskType,
-    )
+    data_disk_type = proto.Field(proto.ENUM, number=25, enum=DiskType,)
 
     data_disk_size_gb = proto.Field(proto.INT64, number=26)
 
     no_remove_data_disk = proto.Field(proto.BOOL, number=27)
 
-    disk_encryption = proto.Field(proto.ENUM, number=15,
-        enum=DiskEncryption,
-    )
+    disk_encryption = proto.Field(proto.ENUM, number=15, enum=DiskEncryption,)
 
     kms_key = proto.Field(proto.STRING, number=16)
 
@@ -265,13 +256,9 @@ class Instance(proto.Message):
 
     metadata = proto.MapField(proto.STRING, proto.STRING, number=22)
 
-    create_time = proto.Field(proto.MESSAGE, number=23,
-        message=timestamp.Timestamp,
-    )
+    create_time = proto.Field(proto.MESSAGE, number=23, message=timestamp.Timestamp,)
 
-    update_time = proto.Field(proto.MESSAGE, number=24,
-        message=timestamp.Timestamp,
-    )
+    update_time = proto.Field(proto.MESSAGE, number=24, message=timestamp.Timestamp,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

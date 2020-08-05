@@ -21,7 +21,7 @@ import pkg_resources
 
 from google import auth
 from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1    # type: ignore
+from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
 from google.api_core import operations_v1  # type: ignore
 from google.auth import credentials  # type: ignore
@@ -34,29 +34,27 @@ from google.longrunning import operations_pb2 as operations  # type: ignore
 
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-notebooks',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-notebooks",).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
+
 class NotebookServiceTransport(abc.ABC):
     """Abstract transport class for NotebookService."""
 
-    AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    AUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
     def __init__(
-            self, *,
-            host: str = 'notebooks.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: typing.Optional[str] = None,
-            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-            quota_project_id: typing.Optional[str] = None,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = "notebooks.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: typing.Optional[str] = None,
+        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+        quota_project_id: typing.Optional[str] = None,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -74,24 +72,26 @@ class NotebookServiceTransport(abc.ABC):
                 and quota.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                                credentials_file,
-                                scopes=scopes,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, scopes=scopes, quota_project_id=quota_project_id
+            )
 
         elif credentials is None:
-            credentials, _ = auth.default(scopes=scopes, quota_project_id=quota_project_id)
+            credentials, _ = auth.default(
+                scopes=scopes, quota_project_id=quota_project_id
+            )
 
         # Save the credentials.
         self._credentials = credentials
@@ -103,24 +103,16 @@ class NotebookServiceTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.list_instances: gapic_v1.method.wrap_method(
-                self.list_instances,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.list_instances, default_timeout=60.0, client_info=_client_info,
             ),
             self.get_instance: gapic_v1.method.wrap_method(
-                self.get_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.get_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.create_instance: gapic_v1.method.wrap_method(
-                self.create_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.create_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.register_instance: gapic_v1.method.wrap_method(
-                self.register_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.register_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.set_instance_accelerator: gapic_v1.method.wrap_method(
                 self.set_instance_accelerator,
@@ -138,24 +130,16 @@ class NotebookServiceTransport(abc.ABC):
                 client_info=_client_info,
             ),
             self.delete_instance: gapic_v1.method.wrap_method(
-                self.delete_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.delete_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.start_instance: gapic_v1.method.wrap_method(
-                self.start_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.start_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.stop_instance: gapic_v1.method.wrap_method(
-                self.stop_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.stop_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.reset_instance: gapic_v1.method.wrap_method(
-                self.reset_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.reset_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.report_instance_info: gapic_v1.method.wrap_method(
                 self.report_instance_info,
@@ -168,9 +152,7 @@ class NotebookServiceTransport(abc.ABC):
                 client_info=_client_info,
             ),
             self.upgrade_instance: gapic_v1.method.wrap_method(
-                self.upgrade_instance,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.upgrade_instance, default_timeout=60.0, client_info=_client_info,
             ),
             self.upgrade_instance_internal: gapic_v1.method.wrap_method(
                 self.upgrade_instance_internal,
@@ -178,26 +160,17 @@ class NotebookServiceTransport(abc.ABC):
                 client_info=_client_info,
             ),
             self.list_environments: gapic_v1.method.wrap_method(
-                self.list_environments,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.list_environments, default_timeout=60.0, client_info=_client_info,
             ),
             self.get_environment: gapic_v1.method.wrap_method(
-                self.get_environment,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.get_environment, default_timeout=60.0, client_info=_client_info,
             ),
             self.create_environment: gapic_v1.method.wrap_method(
-                self.create_environment,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.create_environment, default_timeout=60.0, client_info=_client_info,
             ),
             self.delete_environment: gapic_v1.method.wrap_method(
-                self.delete_environment,
-                default_timeout=60.0,
-                client_info=_client_info,
+                self.delete_environment, default_timeout=60.0, client_info=_client_info,
             ),
-
         }
 
     @property
@@ -206,177 +179,186 @@ class NotebookServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def list_instances(self) -> typing.Callable[
-            [service.ListInstancesRequest],
-            typing.Union[
-                service.ListInstancesResponse,
-                typing.Awaitable[service.ListInstancesResponse]
-            ]]:
+    def list_instances(
+        self,
+    ) -> typing.Callable[
+        [service.ListInstancesRequest],
+        typing.Union[
+            service.ListInstancesResponse,
+            typing.Awaitable[service.ListInstancesResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_instance(self) -> typing.Callable[
-            [service.GetInstanceRequest],
-            typing.Union[
-                instance.Instance,
-                typing.Awaitable[instance.Instance]
-            ]]:
+    def get_instance(
+        self,
+    ) -> typing.Callable[
+        [service.GetInstanceRequest],
+        typing.Union[instance.Instance, typing.Awaitable[instance.Instance]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_instance(self) -> typing.Callable[
-            [service.CreateInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def create_instance(
+        self,
+    ) -> typing.Callable[
+        [service.CreateInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def register_instance(self) -> typing.Callable[
-            [service.RegisterInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def register_instance(
+        self,
+    ) -> typing.Callable[
+        [service.RegisterInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def set_instance_accelerator(self) -> typing.Callable[
-            [service.SetInstanceAcceleratorRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def set_instance_accelerator(
+        self,
+    ) -> typing.Callable[
+        [service.SetInstanceAcceleratorRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def set_instance_machine_type(self) -> typing.Callable[
-            [service.SetInstanceMachineTypeRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def set_instance_machine_type(
+        self,
+    ) -> typing.Callable[
+        [service.SetInstanceMachineTypeRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def set_instance_labels(self) -> typing.Callable[
-            [service.SetInstanceLabelsRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def set_instance_labels(
+        self,
+    ) -> typing.Callable[
+        [service.SetInstanceLabelsRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_instance(self) -> typing.Callable[
-            [service.DeleteInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def delete_instance(
+        self,
+    ) -> typing.Callable[
+        [service.DeleteInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def start_instance(self) -> typing.Callable[
-            [service.StartInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def start_instance(
+        self,
+    ) -> typing.Callable[
+        [service.StartInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def stop_instance(self) -> typing.Callable[
-            [service.StopInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def stop_instance(
+        self,
+    ) -> typing.Callable[
+        [service.StopInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def reset_instance(self) -> typing.Callable[
-            [service.ResetInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def reset_instance(
+        self,
+    ) -> typing.Callable[
+        [service.ResetInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def report_instance_info(self) -> typing.Callable[
-            [service.ReportInstanceInfoRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def report_instance_info(
+        self,
+    ) -> typing.Callable[
+        [service.ReportInstanceInfoRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def is_instance_upgradeable(self) -> typing.Callable[
-            [service.IsInstanceUpgradeableRequest],
-            typing.Union[
-                service.IsInstanceUpgradeableResponse,
-                typing.Awaitable[service.IsInstanceUpgradeableResponse]
-            ]]:
+    def is_instance_upgradeable(
+        self,
+    ) -> typing.Callable[
+        [service.IsInstanceUpgradeableRequest],
+        typing.Union[
+            service.IsInstanceUpgradeableResponse,
+            typing.Awaitable[service.IsInstanceUpgradeableResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def upgrade_instance(self) -> typing.Callable[
-            [service.UpgradeInstanceRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def upgrade_instance(
+        self,
+    ) -> typing.Callable[
+        [service.UpgradeInstanceRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def upgrade_instance_internal(self) -> typing.Callable[
-            [service.UpgradeInstanceInternalRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def upgrade_instance_internal(
+        self,
+    ) -> typing.Callable[
+        [service.UpgradeInstanceInternalRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def list_environments(self) -> typing.Callable[
-            [service.ListEnvironmentsRequest],
-            typing.Union[
-                service.ListEnvironmentsResponse,
-                typing.Awaitable[service.ListEnvironmentsResponse]
-            ]]:
+    def list_environments(
+        self,
+    ) -> typing.Callable[
+        [service.ListEnvironmentsRequest],
+        typing.Union[
+            service.ListEnvironmentsResponse,
+            typing.Awaitable[service.ListEnvironmentsResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_environment(self) -> typing.Callable[
-            [service.GetEnvironmentRequest],
-            typing.Union[
-                environment.Environment,
-                typing.Awaitable[environment.Environment]
-            ]]:
+    def get_environment(
+        self,
+    ) -> typing.Callable[
+        [service.GetEnvironmentRequest],
+        typing.Union[
+            environment.Environment, typing.Awaitable[environment.Environment]
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_environment(self) -> typing.Callable[
-            [service.CreateEnvironmentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def create_environment(
+        self,
+    ) -> typing.Callable[
+        [service.CreateEnvironmentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def delete_environment(self) -> typing.Callable[
-            [service.DeleteEnvironmentRequest],
-            typing.Union[
-                operations.Operation,
-                typing.Awaitable[operations.Operation]
-            ]]:
+    def delete_environment(
+        self,
+    ) -> typing.Callable[
+        [service.DeleteEnvironmentRequest],
+        typing.Union[operations.Operation, typing.Awaitable[operations.Operation]],
+    ]:
         raise NotImplementedError()
 
 
-__all__ = (
-    'NotebookServiceTransport',
-)
+__all__ = ("NotebookServiceTransport",)

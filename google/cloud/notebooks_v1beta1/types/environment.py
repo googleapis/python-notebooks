@@ -22,12 +22,8 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.notebooks.v1beta1',
-    manifest={
-        'Environment',
-        'VmImage',
-        'ContainerImage',
-    },
+    package="google.cloud.notebooks.v1beta1",
+    manifest={"Environment", "VmImage", "ContainerImage",},
 )
 
 
@@ -65,19 +61,17 @@ class Environment(proto.Message):
 
     description = proto.Field(proto.STRING, number=3)
 
-    vm_image = proto.Field(proto.MESSAGE, number=6, oneof='image_type',
-        message='VmImage',
+    vm_image = proto.Field(
+        proto.MESSAGE, number=6, oneof="image_type", message="VmImage",
     )
 
-    container_image = proto.Field(proto.MESSAGE, number=7, oneof='image_type',
-        message='ContainerImage',
+    container_image = proto.Field(
+        proto.MESSAGE, number=7, oneof="image_type", message="ContainerImage",
     )
 
     post_startup_script = proto.Field(proto.STRING, number=8)
 
-    create_time = proto.Field(proto.MESSAGE, number=9,
-        message=timestamp.Timestamp,
-    )
+    create_time = proto.Field(proto.MESSAGE, number=9, message=timestamp.Timestamp,)
 
 
 class VmImage(proto.Message):
@@ -98,9 +92,9 @@ class VmImage(proto.Message):
 
     project = proto.Field(proto.STRING, number=1)
 
-    image_name = proto.Field(proto.STRING, number=2, oneof='image')
+    image_name = proto.Field(proto.STRING, number=2, oneof="image")
 
-    image_family = proto.Field(proto.STRING, number=3, oneof='image')
+    image_family = proto.Field(proto.STRING, number=3, oneof="image")
 
 
 class ContainerImage(proto.Message):

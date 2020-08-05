@@ -39,12 +39,15 @@ class ListInstancesPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., service.ListInstancesResponse],
-            request: service.ListInstancesRequest,
-            response: service.ListInstancesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., service.ListInstancesResponse],
+        request: service.ListInstancesRequest,
+        response: service.ListInstancesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -78,7 +81,7 @@ class ListInstancesPager:
             yield from page.instances
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListInstancesAsyncPager:
@@ -98,12 +101,15 @@ class ListInstancesAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[service.ListInstancesResponse]],
-            request: service.ListInstancesRequest,
-            response: service.ListInstancesResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[service.ListInstancesResponse]],
+        request: service.ListInstancesRequest,
+        response: service.ListInstancesResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -141,7 +147,7 @@ class ListInstancesAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListEnvironmentsPager:
@@ -161,12 +167,15 @@ class ListEnvironmentsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., service.ListEnvironmentsResponse],
-            request: service.ListEnvironmentsRequest,
-            response: service.ListEnvironmentsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., service.ListEnvironmentsResponse],
+        request: service.ListEnvironmentsRequest,
+        response: service.ListEnvironmentsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -200,7 +209,7 @@ class ListEnvironmentsPager:
             yield from page.environments
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
 
 
 class ListEnvironmentsAsyncPager:
@@ -220,12 +229,15 @@ class ListEnvironmentsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-    def __init__(self,
-            method: Callable[..., Awaitable[service.ListEnvironmentsResponse]],
-            request: service.ListEnvironmentsRequest,
-            response: service.ListEnvironmentsResponse,
-            *,
-            metadata: Sequence[Tuple[str, str]] = ()):
+
+    def __init__(
+        self,
+        method: Callable[..., Awaitable[service.ListEnvironmentsResponse]],
+        request: service.ListEnvironmentsRequest,
+        response: service.ListEnvironmentsResponse,
+        *,
+        metadata: Sequence[Tuple[str, str]] = ()
+    ):
         """Instantiate the pager.
 
         Args:
@@ -263,4 +275,4 @@ class ListEnvironmentsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
+        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
