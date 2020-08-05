@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.api_core import operation
 from google.api_core import operation_async
@@ -57,17 +57,13 @@ class NotebookServiceAsyncClient:
     from_service_account_file = NotebookServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
-    get_transport_class = functools.partial(
-        type(NotebookServiceClient).get_transport_class, type(NotebookServiceClient)
-    )
+    get_transport_class = functools.partial(type(NotebookServiceClient).get_transport_class, type(NotebookServiceClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, NotebookServiceTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, NotebookServiceTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            ) -> None:
         """Instantiate the notebook service client.
 
         Args:
@@ -99,17 +95,18 @@ class NotebookServiceAsyncClient:
         """
 
         self._client = NotebookServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
         )
 
-    async def list_instances(
-        self,
-        request: service.ListInstancesRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListInstancesAsyncPager:
+    async def list_instances(self,
+            request: service.ListInstancesRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListInstancesAsyncPager:
         r"""Lists instances in a given project and location.
 
         Args:
@@ -147,29 +144,38 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListInstancesAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_instance(
-        self,
-        request: service.GetInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> instance.Instance:
+    async def get_instance(self,
+            request: service.GetInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> instance.Instance:
         r"""Gets details of a single Instance.
 
         Args:
@@ -204,23 +210,29 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_instance(
-        self,
-        request: service.CreateInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def create_instance(self,
+            request: service.CreateInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Creates a new Instance in a given project and
         location.
 
@@ -259,11 +271,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -276,14 +295,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def register_instance(
-        self,
-        request: service.RegisterInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def register_instance(self,
+            request: service.RegisterInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Registers an existing legacy notebook instance to the
         Notebooks API server. Legacy instances are instances
         created with the legacy Compute Engine calls. They are
@@ -326,11 +344,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -343,14 +368,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def set_instance_accelerator(
-        self,
-        request: service.SetInstanceAcceleratorRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def set_instance_accelerator(self,
+            request: service.SetInstanceAcceleratorRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates the guest accelerators of a single Instance.
 
         Args:
@@ -388,11 +412,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -405,14 +436,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def set_instance_machine_type(
-        self,
-        request: service.SetInstanceMachineTypeRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def set_instance_machine_type(self,
+            request: service.SetInstanceMachineTypeRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates the machine type of a single Instance.
 
         Args:
@@ -450,11 +480,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -467,14 +504,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def set_instance_labels(
-        self,
-        request: service.SetInstanceLabelsRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def set_instance_labels(self,
+            request: service.SetInstanceLabelsRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Updates the labels of an Instance.
 
         Args:
@@ -511,11 +547,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -528,14 +571,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def delete_instance(
-        self,
-        request: service.DeleteInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def delete_instance(self,
+            request: service.DeleteInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes a single Instance.
 
         Args:
@@ -585,11 +627,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -602,14 +651,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def start_instance(
-        self,
-        request: service.StartInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def start_instance(self,
+            request: service.StartInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Starts a notebook instance.
 
         Args:
@@ -647,11 +695,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -664,14 +719,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def stop_instance(
-        self,
-        request: service.StopInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def stop_instance(self,
+            request: service.StopInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Stops a notebook instance.
 
         Args:
@@ -709,11 +763,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -726,14 +787,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def reset_instance(
-        self,
-        request: service.ResetInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def reset_instance(self,
+            request: service.ResetInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Resets a notebook instance.
 
         Args:
@@ -771,11 +831,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -788,14 +855,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def report_instance_info(
-        self,
-        request: service.ReportInstanceInfoRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def report_instance_info(self,
+            request: service.ReportInstanceInfoRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Allows notebook instances to
         report their latest instance information to the
         Notebooks API server. The server will merge the reported
@@ -837,11 +903,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -854,14 +927,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def is_instance_upgradeable(
-        self,
-        request: service.IsInstanceUpgradeableRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> service.IsInstanceUpgradeableResponse:
+    async def is_instance_upgradeable(self,
+            request: service.IsInstanceUpgradeableRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.IsInstanceUpgradeableResponse:
         r"""Check if a notebook instance is upgradable.
 
         Args:
@@ -896,25 +968,29 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("notebook_instance", request.notebook_instance),)
-            ),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('notebook_instance', request.notebook_instance),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def upgrade_instance(
-        self,
-        request: service.UpgradeInstanceRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def upgrade_instance(self,
+            request: service.UpgradeInstanceRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Upgrades a notebook instance to the latest version.
 
         Args:
@@ -952,11 +1028,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -969,14 +1052,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def upgrade_instance_internal(
-        self,
-        request: service.UpgradeInstanceInternalRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def upgrade_instance_internal(self,
+            request: service.UpgradeInstanceInternalRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Allows notebook instances to
         call this endpoint to upgrade themselves. Do not use
         this method directly.
@@ -1016,11 +1098,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -1033,14 +1122,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def list_environments(
-        self,
-        request: service.ListEnvironmentsRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListEnvironmentsAsyncPager:
+    async def list_environments(self,
+            request: service.ListEnvironmentsRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListEnvironmentsAsyncPager:
         r"""Lists environments in a project.
 
         Args:
@@ -1076,29 +1164,38 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListEnvironmentsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_environment(
-        self,
-        request: service.GetEnvironmentRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> environment.Environment:
+    async def get_environment(self,
+            request: service.GetEnvironmentRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> environment.Environment:
         r"""Gets details of a single Environment.
 
         Args:
@@ -1134,23 +1231,29 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_environment(
-        self,
-        request: service.CreateEnvironmentRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def create_environment(self,
+            request: service.CreateEnvironmentRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Creates a new Environment.
 
         Args:
@@ -1189,11 +1292,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -1206,14 +1316,13 @@ class NotebookServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def delete_environment(
-        self,
-        request: service.DeleteEnvironmentRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> operation_async.AsyncOperation:
+    async def delete_environment(self,
+            request: service.DeleteEnvironmentRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> operation_async.AsyncOperation:
         r"""Deletes a single Environment.
 
         Args:
@@ -1263,11 +1372,18 @@ class NotebookServiceAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Wrap the response in an operation future.
         response = operation_async.from_gapic(
@@ -1281,12 +1397,21 @@ class NotebookServiceAsyncClient:
         return response
 
 
+
+
+
+
+
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-cloud-notebooks",).version,
+        gapic_version=pkg_resources.get_distribution(
+            'google-cloud-notebooks',
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("NotebookServiceAsyncClient",)
+__all__ = (
+    'NotebookServiceAsyncClient',
+)

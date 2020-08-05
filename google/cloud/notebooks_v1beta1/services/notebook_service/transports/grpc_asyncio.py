@@ -17,12 +17,12 @@
 
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers_async  # type: ignore
-from google.api_core import operations_v1  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google.api_core import operations_v1              # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.notebooks_v1beta1.types import environment
@@ -51,15 +51,13 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "notebooks.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'notebooks.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             address (Optional[str]): The host for the channel to use.
@@ -88,21 +86,19 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "notebooks.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'notebooks.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -146,11 +142,7 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = (
-                api_mtls_endpoint
-                if ":" in api_mtls_endpoint
-                else api_mtls_endpoint + ":443"
-            )
+            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -192,9 +184,10 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, "_grpc_channel"):
+        if not hasattr(self, '_grpc_channel'):
             self._grpc_channel = self.create_channel(
-                self._host, credentials=self._credentials,
+                self._host,
+                credentials=self._credentials,
             )
 
         # Return the channel from cache.
@@ -208,20 +201,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         client.
         """
         # Sanity check: Only create a new client if we do not already have one.
-        if "operations_client" not in self.__dict__:
-            self.__dict__["operations_client"] = operations_v1.OperationsAsyncClient(
+        if 'operations_client' not in self.__dict__:
+            self.__dict__['operations_client'] = operations_v1.OperationsAsyncClient(
                 self.grpc_channel
             )
 
         # Return the client from cache.
-        return self.__dict__["operations_client"]
+        return self.__dict__['operations_client']
 
     @property
-    def list_instances(
-        self,
-    ) -> Callable[
-        [service.ListInstancesRequest], Awaitable[service.ListInstancesResponse]
-    ]:
+    def list_instances(self) -> Callable[
+            [service.ListInstancesRequest],
+            Awaitable[service.ListInstancesResponse]]:
         r"""Return a callable for the list instances method over gRPC.
 
         Lists instances in a given project and location.
@@ -236,18 +227,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_instances" not in self._stubs:
-            self._stubs["list_instances"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/ListInstances",
+        if 'list_instances' not in self._stubs:
+            self._stubs['list_instances'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/ListInstances',
                 request_serializer=service.ListInstancesRequest.serialize,
                 response_deserializer=service.ListInstancesResponse.deserialize,
             )
-        return self._stubs["list_instances"]
+        return self._stubs['list_instances']
 
     @property
-    def get_instance(
-        self,
-    ) -> Callable[[service.GetInstanceRequest], Awaitable[instance.Instance]]:
+    def get_instance(self) -> Callable[
+            [service.GetInstanceRequest],
+            Awaitable[instance.Instance]]:
         r"""Return a callable for the get instance method over gRPC.
 
         Gets details of a single Instance.
@@ -262,18 +253,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_instance" not in self._stubs:
-            self._stubs["get_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/GetInstance",
+        if 'get_instance' not in self._stubs:
+            self._stubs['get_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/GetInstance',
                 request_serializer=service.GetInstanceRequest.serialize,
                 response_deserializer=instance.Instance.deserialize,
             )
-        return self._stubs["get_instance"]
+        return self._stubs['get_instance']
 
     @property
-    def create_instance(
-        self,
-    ) -> Callable[[service.CreateInstanceRequest], Awaitable[operations.Operation]]:
+    def create_instance(self) -> Callable[
+            [service.CreateInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the create instance method over gRPC.
 
         Creates a new Instance in a given project and
@@ -289,18 +280,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_instance" not in self._stubs:
-            self._stubs["create_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/CreateInstance",
+        if 'create_instance' not in self._stubs:
+            self._stubs['create_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/CreateInstance',
                 request_serializer=service.CreateInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["create_instance"]
+        return self._stubs['create_instance']
 
     @property
-    def register_instance(
-        self,
-    ) -> Callable[[service.RegisterInstanceRequest], Awaitable[operations.Operation]]:
+    def register_instance(self) -> Callable[
+            [service.RegisterInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the register instance method over gRPC.
 
         Registers an existing legacy notebook instance to the
@@ -320,20 +311,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "register_instance" not in self._stubs:
-            self._stubs["register_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/RegisterInstance",
+        if 'register_instance' not in self._stubs:
+            self._stubs['register_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/RegisterInstance',
                 request_serializer=service.RegisterInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["register_instance"]
+        return self._stubs['register_instance']
 
     @property
-    def set_instance_accelerator(
-        self,
-    ) -> Callable[
-        [service.SetInstanceAcceleratorRequest], Awaitable[operations.Operation]
-    ]:
+    def set_instance_accelerator(self) -> Callable[
+            [service.SetInstanceAcceleratorRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the set instance accelerator method over gRPC.
 
         Updates the guest accelerators of a single Instance.
@@ -348,20 +337,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "set_instance_accelerator" not in self._stubs:
-            self._stubs["set_instance_accelerator"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceAccelerator",
+        if 'set_instance_accelerator' not in self._stubs:
+            self._stubs['set_instance_accelerator'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceAccelerator',
                 request_serializer=service.SetInstanceAcceleratorRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["set_instance_accelerator"]
+        return self._stubs['set_instance_accelerator']
 
     @property
-    def set_instance_machine_type(
-        self,
-    ) -> Callable[
-        [service.SetInstanceMachineTypeRequest], Awaitable[operations.Operation]
-    ]:
+    def set_instance_machine_type(self) -> Callable[
+            [service.SetInstanceMachineTypeRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the set instance machine type method over gRPC.
 
         Updates the machine type of a single Instance.
@@ -376,18 +363,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "set_instance_machine_type" not in self._stubs:
-            self._stubs["set_instance_machine_type"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceMachineType",
+        if 'set_instance_machine_type' not in self._stubs:
+            self._stubs['set_instance_machine_type'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceMachineType',
                 request_serializer=service.SetInstanceMachineTypeRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["set_instance_machine_type"]
+        return self._stubs['set_instance_machine_type']
 
     @property
-    def set_instance_labels(
-        self,
-    ) -> Callable[[service.SetInstanceLabelsRequest], Awaitable[operations.Operation]]:
+    def set_instance_labels(self) -> Callable[
+            [service.SetInstanceLabelsRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the set instance labels method over gRPC.
 
         Updates the labels of an Instance.
@@ -402,18 +389,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "set_instance_labels" not in self._stubs:
-            self._stubs["set_instance_labels"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceLabels",
+        if 'set_instance_labels' not in self._stubs:
+            self._stubs['set_instance_labels'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/SetInstanceLabels',
                 request_serializer=service.SetInstanceLabelsRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["set_instance_labels"]
+        return self._stubs['set_instance_labels']
 
     @property
-    def delete_instance(
-        self,
-    ) -> Callable[[service.DeleteInstanceRequest], Awaitable[operations.Operation]]:
+    def delete_instance(self) -> Callable[
+            [service.DeleteInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the delete instance method over gRPC.
 
         Deletes a single Instance.
@@ -428,18 +415,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_instance" not in self._stubs:
-            self._stubs["delete_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/DeleteInstance",
+        if 'delete_instance' not in self._stubs:
+            self._stubs['delete_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/DeleteInstance',
                 request_serializer=service.DeleteInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["delete_instance"]
+        return self._stubs['delete_instance']
 
     @property
-    def start_instance(
-        self,
-    ) -> Callable[[service.StartInstanceRequest], Awaitable[operations.Operation]]:
+    def start_instance(self) -> Callable[
+            [service.StartInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the start instance method over gRPC.
 
         Starts a notebook instance.
@@ -454,18 +441,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "start_instance" not in self._stubs:
-            self._stubs["start_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/StartInstance",
+        if 'start_instance' not in self._stubs:
+            self._stubs['start_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/StartInstance',
                 request_serializer=service.StartInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["start_instance"]
+        return self._stubs['start_instance']
 
     @property
-    def stop_instance(
-        self,
-    ) -> Callable[[service.StopInstanceRequest], Awaitable[operations.Operation]]:
+    def stop_instance(self) -> Callable[
+            [service.StopInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the stop instance method over gRPC.
 
         Stops a notebook instance.
@@ -480,18 +467,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "stop_instance" not in self._stubs:
-            self._stubs["stop_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/StopInstance",
+        if 'stop_instance' not in self._stubs:
+            self._stubs['stop_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/StopInstance',
                 request_serializer=service.StopInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["stop_instance"]
+        return self._stubs['stop_instance']
 
     @property
-    def reset_instance(
-        self,
-    ) -> Callable[[service.ResetInstanceRequest], Awaitable[operations.Operation]]:
+    def reset_instance(self) -> Callable[
+            [service.ResetInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the reset instance method over gRPC.
 
         Resets a notebook instance.
@@ -506,18 +493,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "reset_instance" not in self._stubs:
-            self._stubs["reset_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/ResetInstance",
+        if 'reset_instance' not in self._stubs:
+            self._stubs['reset_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/ResetInstance',
                 request_serializer=service.ResetInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["reset_instance"]
+        return self._stubs['reset_instance']
 
     @property
-    def report_instance_info(
-        self,
-    ) -> Callable[[service.ReportInstanceInfoRequest], Awaitable[operations.Operation]]:
+    def report_instance_info(self) -> Callable[
+            [service.ReportInstanceInfoRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the report instance info method over gRPC.
 
         Allows notebook instances to
@@ -536,21 +523,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "report_instance_info" not in self._stubs:
-            self._stubs["report_instance_info"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/ReportInstanceInfo",
+        if 'report_instance_info' not in self._stubs:
+            self._stubs['report_instance_info'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/ReportInstanceInfo',
                 request_serializer=service.ReportInstanceInfoRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["report_instance_info"]
+        return self._stubs['report_instance_info']
 
     @property
-    def is_instance_upgradeable(
-        self,
-    ) -> Callable[
-        [service.IsInstanceUpgradeableRequest],
-        Awaitable[service.IsInstanceUpgradeableResponse],
-    ]:
+    def is_instance_upgradeable(self) -> Callable[
+            [service.IsInstanceUpgradeableRequest],
+            Awaitable[service.IsInstanceUpgradeableResponse]]:
         r"""Return a callable for the is instance upgradeable method over gRPC.
 
         Check if a notebook instance is upgradable.
@@ -565,18 +549,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "is_instance_upgradeable" not in self._stubs:
-            self._stubs["is_instance_upgradeable"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/IsInstanceUpgradeable",
+        if 'is_instance_upgradeable' not in self._stubs:
+            self._stubs['is_instance_upgradeable'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/IsInstanceUpgradeable',
                 request_serializer=service.IsInstanceUpgradeableRequest.serialize,
                 response_deserializer=service.IsInstanceUpgradeableResponse.deserialize,
             )
-        return self._stubs["is_instance_upgradeable"]
+        return self._stubs['is_instance_upgradeable']
 
     @property
-    def upgrade_instance(
-        self,
-    ) -> Callable[[service.UpgradeInstanceRequest], Awaitable[operations.Operation]]:
+    def upgrade_instance(self) -> Callable[
+            [service.UpgradeInstanceRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the upgrade instance method over gRPC.
 
         Upgrades a notebook instance to the latest version.
@@ -591,20 +575,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "upgrade_instance" not in self._stubs:
-            self._stubs["upgrade_instance"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/UpgradeInstance",
+        if 'upgrade_instance' not in self._stubs:
+            self._stubs['upgrade_instance'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/UpgradeInstance',
                 request_serializer=service.UpgradeInstanceRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["upgrade_instance"]
+        return self._stubs['upgrade_instance']
 
     @property
-    def upgrade_instance_internal(
-        self,
-    ) -> Callable[
-        [service.UpgradeInstanceInternalRequest], Awaitable[operations.Operation]
-    ]:
+    def upgrade_instance_internal(self) -> Callable[
+            [service.UpgradeInstanceInternalRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the upgrade instance internal method over gRPC.
 
         Allows notebook instances to
@@ -621,20 +603,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "upgrade_instance_internal" not in self._stubs:
-            self._stubs["upgrade_instance_internal"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/UpgradeInstanceInternal",
+        if 'upgrade_instance_internal' not in self._stubs:
+            self._stubs['upgrade_instance_internal'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/UpgradeInstanceInternal',
                 request_serializer=service.UpgradeInstanceInternalRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["upgrade_instance_internal"]
+        return self._stubs['upgrade_instance_internal']
 
     @property
-    def list_environments(
-        self,
-    ) -> Callable[
-        [service.ListEnvironmentsRequest], Awaitable[service.ListEnvironmentsResponse]
-    ]:
+    def list_environments(self) -> Callable[
+            [service.ListEnvironmentsRequest],
+            Awaitable[service.ListEnvironmentsResponse]]:
         r"""Return a callable for the list environments method over gRPC.
 
         Lists environments in a project.
@@ -649,18 +629,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_environments" not in self._stubs:
-            self._stubs["list_environments"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/ListEnvironments",
+        if 'list_environments' not in self._stubs:
+            self._stubs['list_environments'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/ListEnvironments',
                 request_serializer=service.ListEnvironmentsRequest.serialize,
                 response_deserializer=service.ListEnvironmentsResponse.deserialize,
             )
-        return self._stubs["list_environments"]
+        return self._stubs['list_environments']
 
     @property
-    def get_environment(
-        self,
-    ) -> Callable[[service.GetEnvironmentRequest], Awaitable[environment.Environment]]:
+    def get_environment(self) -> Callable[
+            [service.GetEnvironmentRequest],
+            Awaitable[environment.Environment]]:
         r"""Return a callable for the get environment method over gRPC.
 
         Gets details of a single Environment.
@@ -675,18 +655,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_environment" not in self._stubs:
-            self._stubs["get_environment"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/GetEnvironment",
+        if 'get_environment' not in self._stubs:
+            self._stubs['get_environment'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/GetEnvironment',
                 request_serializer=service.GetEnvironmentRequest.serialize,
                 response_deserializer=environment.Environment.deserialize,
             )
-        return self._stubs["get_environment"]
+        return self._stubs['get_environment']
 
     @property
-    def create_environment(
-        self,
-    ) -> Callable[[service.CreateEnvironmentRequest], Awaitable[operations.Operation]]:
+    def create_environment(self) -> Callable[
+            [service.CreateEnvironmentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the create environment method over gRPC.
 
         Creates a new Environment.
@@ -701,18 +681,18 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_environment" not in self._stubs:
-            self._stubs["create_environment"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/CreateEnvironment",
+        if 'create_environment' not in self._stubs:
+            self._stubs['create_environment'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/CreateEnvironment',
                 request_serializer=service.CreateEnvironmentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["create_environment"]
+        return self._stubs['create_environment']
 
     @property
-    def delete_environment(
-        self,
-    ) -> Callable[[service.DeleteEnvironmentRequest], Awaitable[operations.Operation]]:
+    def delete_environment(self) -> Callable[
+            [service.DeleteEnvironmentRequest],
+            Awaitable[operations.Operation]]:
         r"""Return a callable for the delete environment method over gRPC.
 
         Deletes a single Environment.
@@ -727,13 +707,15 @@ class NotebookServiceGrpcAsyncIOTransport(NotebookServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "delete_environment" not in self._stubs:
-            self._stubs["delete_environment"] = self.grpc_channel.unary_unary(
-                "/google.cloud.notebooks.v1beta1.NotebookService/DeleteEnvironment",
+        if 'delete_environment' not in self._stubs:
+            self._stubs['delete_environment'] = self.grpc_channel.unary_unary(
+                '/google.cloud.notebooks.v1beta1.NotebookService/DeleteEnvironment',
                 request_serializer=service.DeleteEnvironmentRequest.serialize,
                 response_deserializer=operations.Operation.FromString,
             )
-        return self._stubs["delete_environment"]
+        return self._stubs['delete_environment']
 
 
-__all__ = ("NotebookServiceGrpcAsyncIOTransport",)
+__all__ = (
+    'NotebookServiceGrpcAsyncIOTransport',
+)
