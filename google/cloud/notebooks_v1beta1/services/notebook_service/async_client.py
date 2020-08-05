@@ -50,9 +50,9 @@ class NotebookServiceAsyncClient:
     DEFAULT_ENDPOINT = NotebookServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = NotebookServiceClient.DEFAULT_MTLS_ENDPOINT
 
-    environment_path = staticmethod(NotebookServiceClient.environment_path)
-
     instance_path = staticmethod(NotebookServiceClient.instance_path)
+
+    environment_path = staticmethod(NotebookServiceClient.environment_path)
 
     from_service_account_file = NotebookServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file

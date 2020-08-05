@@ -134,6 +134,8 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
                 quota_project_id=quota_project_id,
             )
 
+        self._stubs = {}  # type: Dict[str, Callable]
+
         # Run the base constructor.
         super().__init__(
             host=host,
@@ -142,8 +144,6 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
             scopes=scopes or self.AUTH_SCOPES,
             quota_project_id=quota_project_id,
         )
-
-        self._stubs = {}  # type: Dict[str, Callable]
 
     @classmethod
     def create_channel(

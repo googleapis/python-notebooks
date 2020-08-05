@@ -3,7 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "sso://devrel/cloud/libraries/python/python-notebooks"
+        "remote": "https://github.com/googleapis/python-notebooks.git",
+        "sha": "d86f58dddc07bab83e28b651a18aaca094e94c37"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "6fd07563a2f1a6785066f5955ad9659a315e4492",
+        "internalRef": "324941614"
       }
     },
     {
