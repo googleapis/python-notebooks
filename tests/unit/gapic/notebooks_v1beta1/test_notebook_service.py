@@ -55,6 +55,17 @@ def client_cert_source_callback():
     return b"cert bytes", b"key bytes"
 
 
+# If default endpoint is localhost, then default mtls endpoint will be the same.
+# This method modifies the default endpoint so the client can produce a different
+# mtls endpoint for endpoint testing purposes.
+def modify_default_endpoint(client):
+    return (
+        "foo.googleapis.com"
+        if ("localhost" in client.DEFAULT_ENDPOINT)
+        else client.DEFAULT_ENDPOINT
+    )
+
+
 def test__get_default_mtls_endpoint():
     api_endpoint = "example.googleapis.com"
     api_mtls_endpoint = "example.mtls.googleapis.com"
@@ -120,6 +131,16 @@ def test_notebook_service_client_get_transport_class():
             "grpc_asyncio",
         ),
     ],
+)
+@mock.patch.object(
+    NotebookServiceClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(NotebookServiceClient),
+)
+@mock.patch.object(
+    NotebookServiceAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(NotebookServiceAsyncClient),
 )
 def test_notebook_service_client_client_options(
     client_class, transport_class, transport_name
@@ -342,14 +363,16 @@ def test_notebook_service_client_client_options_from_dict():
         )
 
 
-def test_list_instances(transport: str = "grpc"):
+def test_list_instances(
+    transport: str = "grpc", request_type=service.ListInstancesRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListInstancesRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.list_instances), "__call__") as call:
@@ -364,7 +387,7 @@ def test_list_instances(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListInstancesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListInstancesPager)
@@ -372,6 +395,10 @@ def test_list_instances(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.unreachable == ["unreachable_value"]
+
+
+def test_list_instances_from_dict():
+    test_list_instances(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -607,14 +634,14 @@ async def test_list_instances_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_get_instance(transport: str = "grpc"):
+def test_get_instance(transport: str = "grpc", request_type=service.GetInstanceRequest):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_instance), "__call__") as call:
@@ -649,7 +676,7 @@ def test_get_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, instance.Instance)
@@ -693,6 +720,10 @@ def test_get_instance(transport: str = "grpc"):
     assert response.network == "network_value"
 
     assert response.subnet == "subnet_value"
+
+
+def test_get_instance_from_dict():
+    test_get_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -838,14 +869,16 @@ async def test_get_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_create_instance(transport: str = "grpc"):
+def test_create_instance(
+    transport: str = "grpc", request_type=service.CreateInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.create_instance), "__call__") as call:
@@ -858,10 +891,14 @@ def test_create_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_create_instance_from_dict():
+    test_create_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -948,14 +985,16 @@ async def test_create_instance_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_register_instance(transport: str = "grpc"):
+def test_register_instance(
+    transport: str = "grpc", request_type=service.RegisterInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.RegisterInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -970,10 +1009,14 @@ def test_register_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.RegisterInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_register_instance_from_dict():
+    test_register_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1062,14 +1105,16 @@ async def test_register_instance_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_set_instance_accelerator(transport: str = "grpc"):
+def test_set_instance_accelerator(
+    transport: str = "grpc", request_type=service.SetInstanceAcceleratorRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.SetInstanceAcceleratorRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1084,10 +1129,14 @@ def test_set_instance_accelerator(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.SetInstanceAcceleratorRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_set_instance_accelerator_from_dict():
+    test_set_instance_accelerator(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1176,14 +1225,16 @@ async def test_set_instance_accelerator_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_set_instance_machine_type(transport: str = "grpc"):
+def test_set_instance_machine_type(
+    transport: str = "grpc", request_type=service.SetInstanceMachineTypeRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.SetInstanceMachineTypeRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1198,10 +1249,14 @@ def test_set_instance_machine_type(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.SetInstanceMachineTypeRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_set_instance_machine_type_from_dict():
+    test_set_instance_machine_type(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1290,14 +1345,16 @@ async def test_set_instance_machine_type_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_set_instance_labels(transport: str = "grpc"):
+def test_set_instance_labels(
+    transport: str = "grpc", request_type=service.SetInstanceLabelsRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.SetInstanceLabelsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1312,10 +1369,14 @@ def test_set_instance_labels(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.SetInstanceLabelsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_set_instance_labels_from_dict():
+    test_set_instance_labels(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1404,14 +1465,16 @@ async def test_set_instance_labels_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_delete_instance(transport: str = "grpc"):
+def test_delete_instance(
+    transport: str = "grpc", request_type=service.DeleteInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.DeleteInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.delete_instance), "__call__") as call:
@@ -1424,10 +1487,14 @@ def test_delete_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.DeleteInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_delete_instance_from_dict():
+    test_delete_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1514,14 +1581,16 @@ async def test_delete_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_start_instance(transport: str = "grpc"):
+def test_start_instance(
+    transport: str = "grpc", request_type=service.StartInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.StartInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.start_instance), "__call__") as call:
@@ -1534,10 +1603,14 @@ def test_start_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.StartInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_start_instance_from_dict():
+    test_start_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1624,14 +1697,16 @@ async def test_start_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_stop_instance(transport: str = "grpc"):
+def test_stop_instance(
+    transport: str = "grpc", request_type=service.StopInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.StopInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.stop_instance), "__call__") as call:
@@ -1644,10 +1719,14 @@ def test_stop_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.StopInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_stop_instance_from_dict():
+    test_stop_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1734,14 +1813,16 @@ async def test_stop_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_reset_instance(transport: str = "grpc"):
+def test_reset_instance(
+    transport: str = "grpc", request_type=service.ResetInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ResetInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.reset_instance), "__call__") as call:
@@ -1754,10 +1835,14 @@ def test_reset_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ResetInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_reset_instance_from_dict():
+    test_reset_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1844,14 +1929,16 @@ async def test_reset_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_report_instance_info(transport: str = "grpc"):
+def test_report_instance_info(
+    transport: str = "grpc", request_type=service.ReportInstanceInfoRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ReportInstanceInfoRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1866,10 +1953,14 @@ def test_report_instance_info(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ReportInstanceInfoRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_report_instance_info_from_dict():
+    test_report_instance_info(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1958,14 +2049,16 @@ async def test_report_instance_info_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_is_instance_upgradeable(transport: str = "grpc"):
+def test_is_instance_upgradeable(
+    transport: str = "grpc", request_type=service.IsInstanceUpgradeableRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.IsInstanceUpgradeableRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1982,7 +2075,7 @@ def test_is_instance_upgradeable(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.IsInstanceUpgradeableRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.IsInstanceUpgradeableResponse)
@@ -1990,6 +2083,10 @@ def test_is_instance_upgradeable(transport: str = "grpc"):
     assert response.upgradeable is True
 
     assert response.upgrade_version == "upgrade_version_value"
+
+
+def test_is_instance_upgradeable_from_dict():
+    test_is_instance_upgradeable(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2090,14 +2187,16 @@ async def test_is_instance_upgradeable_field_headers_async():
     ) in kw["metadata"]
 
 
-def test_upgrade_instance(transport: str = "grpc"):
+def test_upgrade_instance(
+    transport: str = "grpc", request_type=service.UpgradeInstanceRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.UpgradeInstanceRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2112,10 +2211,14 @@ def test_upgrade_instance(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.UpgradeInstanceRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_upgrade_instance_from_dict():
+    test_upgrade_instance(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2204,14 +2307,16 @@ async def test_upgrade_instance_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_upgrade_instance_internal(transport: str = "grpc"):
+def test_upgrade_instance_internal(
+    transport: str = "grpc", request_type=service.UpgradeInstanceInternalRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.UpgradeInstanceInternalRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2226,10 +2331,14 @@ def test_upgrade_instance_internal(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.UpgradeInstanceInternalRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_upgrade_instance_internal_from_dict():
+    test_upgrade_instance_internal(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2318,14 +2427,16 @@ async def test_upgrade_instance_internal_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_list_environments(transport: str = "grpc"):
+def test_list_environments(
+    transport: str = "grpc", request_type=service.ListEnvironmentsRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListEnvironmentsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2342,7 +2453,7 @@ def test_list_environments(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListEnvironmentsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListEnvironmentsPager)
@@ -2350,6 +2461,10 @@ def test_list_environments(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.unreachable == ["unreachable_value"]
+
+
+def test_list_environments_from_dict():
+    test_list_environments(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2591,14 +2706,16 @@ async def test_list_environments_async_pages():
             assert page.raw_page.next_page_token == token
 
 
-def test_get_environment(transport: str = "grpc"):
+def test_get_environment(
+    transport: str = "grpc", request_type=service.GetEnvironmentRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetEnvironmentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_environment), "__call__") as call:
@@ -2617,7 +2734,7 @@ def test_get_environment(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetEnvironmentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, environment.Environment)
@@ -2629,6 +2746,10 @@ def test_get_environment(transport: str = "grpc"):
     assert response.description == "description_value"
 
     assert response.post_startup_script == "post_startup_script_value"
+
+
+def test_get_environment_from_dict():
+    test_get_environment(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2728,14 +2849,16 @@ async def test_get_environment_field_headers_async():
     assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
-def test_create_environment(transport: str = "grpc"):
+def test_create_environment(
+    transport: str = "grpc", request_type=service.CreateEnvironmentRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateEnvironmentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2750,10 +2873,14 @@ def test_create_environment(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateEnvironmentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_create_environment_from_dict():
+    test_create_environment(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2842,14 +2969,16 @@ async def test_create_environment_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_delete_environment(transport: str = "grpc"):
+def test_delete_environment(
+    transport: str = "grpc", request_type=service.DeleteEnvironmentRequest
+):
     client = NotebookServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.DeleteEnvironmentRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2864,10 +2993,14 @@ def test_delete_environment(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.DeleteEnvironmentRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, future.Future)
+
+
+def test_delete_environment_from_dict():
+    test_delete_environment(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3027,9 +3160,13 @@ def test_notebook_service_base_transport_error():
 
 def test_notebook_service_base_transport():
     # Instantiate the base transport.
-    transport = transports.NotebookServiceTransport(
-        credentials=credentials.AnonymousCredentials(),
-    )
+    with mock.patch(
+        "google.cloud.notebooks_v1beta1.services.notebook_service.transports.NotebookServiceTransport.__init__"
+    ) as Transport:
+        Transport.return_value = None
+        transport = transports.NotebookServiceTransport(
+            credentials=credentials.AnonymousCredentials(),
+        )
 
     # Every method on the transport should just blindly
     # raise NotImplementedError.
@@ -3066,7 +3203,12 @@ def test_notebook_service_base_transport():
 
 def test_notebook_service_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(auth, "load_credentials_from_file") as load_creds:
+    with mock.patch.object(
+        auth, "load_credentials_from_file"
+    ) as load_creds, mock.patch(
+        "google.cloud.notebooks_v1beta1.services.notebook_service.transports.NotebookServiceTransport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
         load_creds.return_value = (credentials.AnonymousCredentials(), None)
         transport = transports.NotebookServiceTransport(
             credentials_file="credentials.json", quota_project_id="octopus",
@@ -3327,29 +3469,6 @@ def test_notebook_service_grpc_lro_async_client():
     assert transport.operations_client is transport.operations_client
 
 
-def test_environment_path():
-    project = "squid"
-    environment = "clam"
-
-    expected = "projects/{project}/environments/{environment}".format(
-        project=project, environment=environment,
-    )
-    actual = NotebookServiceClient.environment_path(project, environment)
-    assert expected == actual
-
-
-def test_parse_environment_path():
-    expected = {
-        "project": "whelk",
-        "environment": "octopus",
-    }
-    path = NotebookServiceClient.environment_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = NotebookServiceClient.parse_environment_path(path)
-    assert expected == actual
-
-
 def test_instance_path():
     project = "squid"
     instance = "clam"
@@ -3370,4 +3489,27 @@ def test_parse_instance_path():
 
     # Check that the path construction is reversible.
     actual = NotebookServiceClient.parse_instance_path(path)
+    assert expected == actual
+
+
+def test_environment_path():
+    project = "squid"
+    environment = "clam"
+
+    expected = "projects/{project}/environments/{environment}".format(
+        project=project, environment=environment,
+    )
+    actual = NotebookServiceClient.environment_path(project, environment)
+    assert expected == actual
+
+
+def test_parse_environment_path():
+    expected = {
+        "project": "whelk",
+        "environment": "octopus",
+    }
+    path = NotebookServiceClient.environment_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = NotebookServiceClient.parse_environment_path(path)
     assert expected == actual
