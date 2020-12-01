@@ -19,6 +19,6 @@ from .client import NotebookServiceClient
 from .async_client import NotebookServiceAsyncClient
 
 __all__ = (
-    'NotebookServiceClient',
-    'NotebookServiceAsyncClient',
+    "NotebookServiceClient",
+    "NotebookServiceAsyncClient",
 )

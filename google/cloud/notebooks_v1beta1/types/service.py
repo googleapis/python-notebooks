@@ -24,31 +24,31 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.notebooks.v1beta1',
+    package="google.cloud.notebooks.v1beta1",
     manifest={
-        'OperationMetadata',
-        'ListInstancesRequest',
-        'ListInstancesResponse',
-        'GetInstanceRequest',
-        'CreateInstanceRequest',
-        'RegisterInstanceRequest',
-        'SetInstanceAcceleratorRequest',
-        'SetInstanceMachineTypeRequest',
-        'SetInstanceLabelsRequest',
-        'DeleteInstanceRequest',
-        'StartInstanceRequest',
-        'StopInstanceRequest',
-        'ResetInstanceRequest',
-        'ReportInstanceInfoRequest',
-        'IsInstanceUpgradeableRequest',
-        'IsInstanceUpgradeableResponse',
-        'UpgradeInstanceRequest',
-        'UpgradeInstanceInternalRequest',
-        'ListEnvironmentsRequest',
-        'ListEnvironmentsResponse',
-        'GetEnvironmentRequest',
-        'CreateEnvironmentRequest',
-        'DeleteEnvironmentRequest',
+        "OperationMetadata",
+        "ListInstancesRequest",
+        "ListInstancesResponse",
+        "GetInstanceRequest",
+        "CreateInstanceRequest",
+        "RegisterInstanceRequest",
+        "SetInstanceAcceleratorRequest",
+        "SetInstanceMachineTypeRequest",
+        "SetInstanceLabelsRequest",
+        "DeleteInstanceRequest",
+        "StartInstanceRequest",
+        "StopInstanceRequest",
+        "ResetInstanceRequest",
+        "ReportInstanceInfoRequest",
+        "IsInstanceUpgradeableRequest",
+        "IsInstanceUpgradeableResponse",
+        "UpgradeInstanceRequest",
+        "UpgradeInstanceInternalRequest",
+        "ListEnvironmentsRequest",
+        "ListEnvironmentsResponse",
+        "GetEnvironmentRequest",
+        "CreateEnvironmentRequest",
+        "DeleteEnvironmentRequest",
     },
 )
 
@@ -81,13 +81,9 @@ class OperationMetadata(proto.Message):
             API endpoint name of this operation.
     """
 
-    create_time = proto.Field(proto.MESSAGE, number=1,
-        message=timestamp.Timestamp,
-    )
+    create_time = proto.Field(proto.MESSAGE, number=1, message=timestamp.Timestamp,)
 
-    end_time = proto.Field(proto.MESSAGE, number=2,
-        message=timestamp.Timestamp,
-    )
+    end_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
 
     target = proto.Field(proto.STRING, number=3)
 
@@ -143,8 +139,8 @@ class ListInstancesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    instances = proto.RepeatedField(proto.MESSAGE, number=1,
-        message=gcn_instance.Instance,
+    instances = proto.RepeatedField(
+        proto.MESSAGE, number=1, message=gcn_instance.Instance,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -182,9 +178,7 @@ class CreateInstanceRequest(proto.Message):
 
     instance_id = proto.Field(proto.STRING, number=2)
 
-    instance = proto.Field(proto.MESSAGE, number=3,
-        message=gcn_instance.Instance,
-    )
+    instance = proto.Field(proto.MESSAGE, number=3, message=gcn_instance.Instance,)
 
 
 class RegisterInstanceRequest(proto.Message):
@@ -226,8 +220,8 @@ class SetInstanceAcceleratorRequest(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    type_ = proto.Field(proto.ENUM, number=2,
-        enum=gcn_instance.Instance.AcceleratorType,
+    type_ = proto.Field(
+        proto.ENUM, number=2, enum=gcn_instance.Instance.AcceleratorType,
     )
 
     core_count = proto.Field(proto.INT64, number=3)
@@ -444,8 +438,8 @@ class ListEnvironmentsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    environments = proto.RepeatedField(proto.MESSAGE, number=1,
-        message=gcn_environment.Environment,
+    environments = proto.RepeatedField(
+        proto.MESSAGE, number=1, message=gcn_environment.Environment,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -486,8 +480,8 @@ class CreateEnvironmentRequest(proto.Message):
 
     environment_id = proto.Field(proto.STRING, number=2)
 
-    environment = proto.Field(proto.MESSAGE, number=3,
-        message=gcn_environment.Environment,
+    environment = proto.Field(
+        proto.MESSAGE, number=3, message=gcn_environment.Environment,
     )
 
 
