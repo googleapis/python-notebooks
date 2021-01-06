@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-notebooks.git",
-        "sha": "c636859c53d40e4be9211e1ced0922395a16d880"
+        "sha": "7633ad32ba52781688961fa78aecb6fa0b5f4e3e"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "dd372aa22ded7a8ba6f0e03a80e06358a3fa0907",
-        "internalRef": "347055288"
+        "sha": "520682435235d9c503983a360a2090025aa47cd1",
+        "internalRef": "350246057"
       }
     },
     {
@@ -42,6 +42,7 @@
     }
   ],
   "generatedFiles": [
+    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -95,6 +96,7 @@
     "docs/_templates/layout.html",
     "docs/conf.py",
     "docs/multiprocessing.rst",
+    "docs/notebooks_v1beta1/notebook_service.rst",
     "docs/notebooks_v1beta1/services.rst",
     "docs/notebooks_v1beta1/types.rst",
     "google/cloud/notebooks/__init__.py",
