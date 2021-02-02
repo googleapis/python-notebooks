@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-notebooks.git",
-        "sha": "c636859c53d40e4be9211e1ced0922395a16d880"
+        "sha": "ed42d0fd40e66c86f71197b537691eda14d21b99"
       }
     },
     {
