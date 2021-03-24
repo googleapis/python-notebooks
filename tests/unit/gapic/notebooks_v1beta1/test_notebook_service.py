@@ -95,15 +95,19 @@ def test__get_default_mtls_endpoint():
     )
 
 
-def test_notebook_service_client_from_service_account_info():
+@pytest.mark.parametrize(
+    "client_class", [NotebookServiceClient, NotebookServiceAsyncClient,]
+)
+def test_notebook_service_client_from_service_account_info(client_class):
     creds = credentials.AnonymousCredentials()
     with mock.patch.object(
         service_account.Credentials, "from_service_account_info"
     ) as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = NotebookServiceClient.from_service_account_info(info)
+        client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "notebooks.googleapis.com:443"
 
@@ -119,9 +123,11 @@ def test_notebook_service_client_from_service_account_file(client_class):
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+        assert isinstance(client, client_class)
 
         assert client.transport._host == "notebooks.googleapis.com:443"
 
@@ -496,6 +502,22 @@ def test_list_instances_from_dict():
     test_list_instances(request_type=dict)
 
 
+def test_list_instances_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.list_instances), "__call__") as call:
+        client.list_instances()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ListInstancesRequest()
+
+
 @pytest.mark.asyncio
 async def test_list_instances_async(
     transport: str = "grpc_asyncio", request_type=service.ListInstancesRequest
@@ -821,6 +843,22 @@ def test_get_instance_from_dict():
     test_get_instance(request_type=dict)
 
 
+def test_get_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_instance), "__call__") as call:
+        client.get_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetInstanceRequest()
+
+
 @pytest.mark.asyncio
 async def test_get_instance_async(
     transport: str = "grpc_asyncio", request_type=service.GetInstanceRequest
@@ -999,6 +1037,22 @@ def test_create_instance_from_dict():
     test_create_instance(request_type=dict)
 
 
+def test_create_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.create_instance), "__call__") as call:
+        client.create_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.CreateInstanceRequest()
+
+
 @pytest.mark.asyncio
 async def test_create_instance_async(
     transport: str = "grpc_asyncio", request_type=service.CreateInstanceRequest
@@ -1118,6 +1172,24 @@ def test_register_instance(
 
 def test_register_instance_from_dict():
     test_register_instance(request_type=dict)
+
+
+def test_register_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.register_instance), "__call__"
+    ) as call:
+        client.register_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.RegisterInstanceRequest()
 
 
 @pytest.mark.asyncio
@@ -1247,6 +1319,24 @@ def test_set_instance_accelerator_from_dict():
     test_set_instance_accelerator(request_type=dict)
 
 
+def test_set_instance_accelerator_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.set_instance_accelerator), "__call__"
+    ) as call:
+        client.set_instance_accelerator()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SetInstanceAcceleratorRequest()
+
+
 @pytest.mark.asyncio
 async def test_set_instance_accelerator_async(
     transport: str = "grpc_asyncio", request_type=service.SetInstanceAcceleratorRequest
@@ -1372,6 +1462,24 @@ def test_set_instance_machine_type(
 
 def test_set_instance_machine_type_from_dict():
     test_set_instance_machine_type(request_type=dict)
+
+
+def test_set_instance_machine_type_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.set_instance_machine_type), "__call__"
+    ) as call:
+        client.set_instance_machine_type()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SetInstanceMachineTypeRequest()
 
 
 @pytest.mark.asyncio
@@ -1501,6 +1609,24 @@ def test_set_instance_labels_from_dict():
     test_set_instance_labels(request_type=dict)
 
 
+def test_set_instance_labels_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.set_instance_labels), "__call__"
+    ) as call:
+        client.set_instance_labels()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SetInstanceLabelsRequest()
+
+
 @pytest.mark.asyncio
 async def test_set_instance_labels_async(
     transport: str = "grpc_asyncio", request_type=service.SetInstanceLabelsRequest
@@ -1626,6 +1752,22 @@ def test_delete_instance_from_dict():
     test_delete_instance(request_type=dict)
 
 
+def test_delete_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.delete_instance), "__call__") as call:
+        client.delete_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.DeleteInstanceRequest()
+
+
 @pytest.mark.asyncio
 async def test_delete_instance_async(
     transport: str = "grpc_asyncio", request_type=service.DeleteInstanceRequest
@@ -1743,6 +1885,22 @@ def test_start_instance(
 
 def test_start_instance_from_dict():
     test_start_instance(request_type=dict)
+
+
+def test_start_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.start_instance), "__call__") as call:
+        client.start_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.StartInstanceRequest()
 
 
 @pytest.mark.asyncio
@@ -1864,6 +2022,22 @@ def test_stop_instance_from_dict():
     test_stop_instance(request_type=dict)
 
 
+def test_stop_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.stop_instance), "__call__") as call:
+        client.stop_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.StopInstanceRequest()
+
+
 @pytest.mark.asyncio
 async def test_stop_instance_async(
     transport: str = "grpc_asyncio", request_type=service.StopInstanceRequest
@@ -1981,6 +2155,22 @@ def test_reset_instance(
 
 def test_reset_instance_from_dict():
     test_reset_instance(request_type=dict)
+
+
+def test_reset_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.reset_instance), "__call__") as call:
+        client.reset_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ResetInstanceRequest()
 
 
 @pytest.mark.asyncio
@@ -2102,6 +2292,24 @@ def test_report_instance_info(
 
 def test_report_instance_info_from_dict():
     test_report_instance_info(request_type=dict)
+
+
+def test_report_instance_info_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.report_instance_info), "__call__"
+    ) as call:
+        client.report_instance_info()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ReportInstanceInfoRequest()
 
 
 @pytest.mark.asyncio
@@ -2240,6 +2448,24 @@ def test_is_instance_upgradeable(
 
 def test_is_instance_upgradeable_from_dict():
     test_is_instance_upgradeable(request_type=dict)
+
+
+def test_is_instance_upgradeable_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.is_instance_upgradeable), "__call__"
+    ) as call:
+        client.is_instance_upgradeable()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.IsInstanceUpgradeableRequest()
 
 
 @pytest.mark.asyncio
@@ -2383,6 +2609,22 @@ def test_upgrade_instance_from_dict():
     test_upgrade_instance(request_type=dict)
 
 
+def test_upgrade_instance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.upgrade_instance), "__call__") as call:
+        client.upgrade_instance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.UpgradeInstanceRequest()
+
+
 @pytest.mark.asyncio
 async def test_upgrade_instance_async(
     transport: str = "grpc_asyncio", request_type=service.UpgradeInstanceRequest
@@ -2502,6 +2744,24 @@ def test_upgrade_instance_internal(
 
 def test_upgrade_instance_internal_from_dict():
     test_upgrade_instance_internal(request_type=dict)
+
+
+def test_upgrade_instance_internal_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.upgrade_instance_internal), "__call__"
+    ) as call:
+        client.upgrade_instance_internal()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.UpgradeInstanceInternalRequest()
 
 
 @pytest.mark.asyncio
@@ -2636,6 +2896,24 @@ def test_list_environments(
 
 def test_list_environments_from_dict():
     test_list_environments(request_type=dict)
+
+
+def test_list_environments_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.list_environments), "__call__"
+    ) as call:
+        client.list_environments()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ListEnvironmentsRequest()
 
 
 @pytest.mark.asyncio
@@ -2931,6 +3209,22 @@ def test_get_environment_from_dict():
     test_get_environment(request_type=dict)
 
 
+def test_get_environment_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(type(client.transport.get_environment), "__call__") as call:
+        client.get_environment()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetEnvironmentRequest()
+
+
 @pytest.mark.asyncio
 async def test_get_environment_async(
     transport: str = "grpc_asyncio", request_type=service.GetEnvironmentRequest
@@ -3065,6 +3359,24 @@ def test_create_environment_from_dict():
     test_create_environment(request_type=dict)
 
 
+def test_create_environment_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.create_environment), "__call__"
+    ) as call:
+        client.create_environment()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.CreateEnvironmentRequest()
+
+
 @pytest.mark.asyncio
 async def test_create_environment_async(
     transport: str = "grpc_asyncio", request_type=service.CreateEnvironmentRequest
@@ -3190,6 +3502,24 @@ def test_delete_environment(
 
 def test_delete_environment_from_dict():
     test_delete_environment(request_type=dict)
+
+
+def test_delete_environment_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = NotebookServiceClient(
+        credentials=credentials.AnonymousCredentials(), transport="grpc",
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client.transport.delete_environment), "__call__"
+    ) as call:
+        client.delete_environment()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.DeleteEnvironmentRequest()
 
 
 @pytest.mark.asyncio
