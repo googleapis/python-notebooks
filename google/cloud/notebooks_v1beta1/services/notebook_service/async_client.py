@@ -84,7 +84,6 @@ class NotebookServiceAsyncClient:
         NotebookServiceClient.parse_common_location_path
     )
 
-    from_service_account_info = NotebookServiceClient.from_service_account_info
     from_service_account_file = NotebookServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -160,7 +159,7 @@ class NotebookServiceAsyncClient:
         r"""Lists instances in a given project and location.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.ListInstancesRequest`):
+            request (:class:`~.service.ListInstancesRequest`):
                 The request object. Request for listing notebook
                 instances.
 
@@ -171,7 +170,7 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.notebooks_v1beta1.services.notebook_service.pagers.ListInstancesAsyncPager:
+            ~.pagers.ListInstancesAsyncPager:
                 Response for listing notebook
                 instances.
                 Iterating over this object will yield
@@ -220,7 +219,7 @@ class NotebookServiceAsyncClient:
         r"""Gets details of a single Instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.GetInstanceRequest`):
+            request (:class:`~.service.GetInstanceRequest`):
                 The request object. Request for getting a notebook
                 instance.
 
@@ -231,7 +230,7 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.notebooks_v1beta1.types.Instance:
+            ~.instance.Instance:
                 The definition of a notebook
                 instance.
 
@@ -272,7 +271,7 @@ class NotebookServiceAsyncClient:
         location.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.CreateInstanceRequest`):
+            request (:class:`~.service.CreateInstanceRequest`):
                 The request object. Request for creating a notebook
                 instance.
 
@@ -283,12 +282,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -339,7 +338,7 @@ class NotebookServiceAsyncClient:
         API.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.RegisterInstanceRequest`):
+            request (:class:`~.service.RegisterInstanceRequest`):
                 The request object. Request for registering a notebook
                 instance.
 
@@ -350,12 +349,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -401,7 +400,7 @@ class NotebookServiceAsyncClient:
         r"""Updates the guest accelerators of a single Instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.SetInstanceAcceleratorRequest`):
+            request (:class:`~.service.SetInstanceAcceleratorRequest`):
                 The request object. Request for setting instance
                 accelerator.
 
@@ -412,12 +411,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -463,7 +462,7 @@ class NotebookServiceAsyncClient:
         r"""Updates the machine type of a single Instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.SetInstanceMachineTypeRequest`):
+            request (:class:`~.service.SetInstanceMachineTypeRequest`):
                 The request object. Request for setting instance machine
                 type.
 
@@ -474,12 +473,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -525,7 +524,7 @@ class NotebookServiceAsyncClient:
         r"""Updates the labels of an Instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.SetInstanceLabelsRequest`):
+            request (:class:`~.service.SetInstanceLabelsRequest`):
                 The request object. Request for setting instance labels.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -535,12 +534,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -586,7 +585,7 @@ class NotebookServiceAsyncClient:
         r"""Deletes a single Instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.DeleteInstanceRequest`):
+            request (:class:`~.service.DeleteInstanceRequest`):
                 The request object. Request for deleting a notebook
                 instance.
 
@@ -597,22 +596,24 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
-                   empty messages in your APIs. A typical example is to
-                   use it as the request or the response type of an API
-                   method. For instance:
+                The result type for the operation will be
+                :class:``~.empty.Empty``: A generic empty message that
+                you can re-use to avoid defining duplicated empty
+                messages in your APIs. A typical example is to use it as
+                the request or the response type of an API method. For
+                instance:
 
-                      service Foo {
-                         rpc Bar(google.protobuf.Empty) returns
-                         (google.protobuf.Empty);
+                ::
 
-                      }
+                    service Foo {
+                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+                    }
 
-                   The JSON representation for Empty is empty JSON
-                   object {}.
+                The JSON representation for ``Empty`` is empty JSON
+                object ``{}``.
 
         """
         # Create or coerce a protobuf request object.
@@ -658,7 +659,7 @@ class NotebookServiceAsyncClient:
         r"""Starts a notebook instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.StartInstanceRequest`):
+            request (:class:`~.service.StartInstanceRequest`):
                 The request object. Request for starting a notebook
                 instance
 
@@ -669,12 +670,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -720,7 +721,7 @@ class NotebookServiceAsyncClient:
         r"""Stops a notebook instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.StopInstanceRequest`):
+            request (:class:`~.service.StopInstanceRequest`):
                 The request object. Request for stopping a notebook
                 instance
 
@@ -731,12 +732,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -782,7 +783,7 @@ class NotebookServiceAsyncClient:
         r"""Resets a notebook instance.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.ResetInstanceRequest`):
+            request (:class:`~.service.ResetInstanceRequest`):
                 The request object. Request for reseting a notebook
                 instance
 
@@ -793,12 +794,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -848,7 +849,7 @@ class NotebookServiceAsyncClient:
         this method directly.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.ReportInstanceInfoRequest`):
+            request (:class:`~.service.ReportInstanceInfoRequest`):
                 The request object. Request for notebook instances to
                 report information to Notebooks API.
 
@@ -859,12 +860,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -910,7 +911,7 @@ class NotebookServiceAsyncClient:
         r"""Check if a notebook instance is upgradable.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.IsInstanceUpgradeableRequest`):
+            request (:class:`~.service.IsInstanceUpgradeableRequest`):
                 The request object. Request for checking if a notebook
                 instance is upgradeable.
 
@@ -921,7 +922,7 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.notebooks_v1beta1.types.IsInstanceUpgradeableResponse:
+            ~.service.IsInstanceUpgradeableResponse:
                 Response for checking if a notebook
                 instance is upgradeable.
 
@@ -963,7 +964,7 @@ class NotebookServiceAsyncClient:
         r"""Upgrades a notebook instance to the latest version.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.UpgradeInstanceRequest`):
+            request (:class:`~.service.UpgradeInstanceRequest`):
                 The request object. Request for upgrading a notebook
                 instance
 
@@ -974,12 +975,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -1027,7 +1028,7 @@ class NotebookServiceAsyncClient:
         this method directly.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.UpgradeInstanceInternalRequest`):
+            request (:class:`~.service.UpgradeInstanceInternalRequest`):
                 The request object. Request for upgrading a notebook
                 instance from within the VM
 
@@ -1038,12 +1039,12 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
                 The result type for the operation will be
-                :class:`google.cloud.notebooks_v1beta1.types.Instance`
-                The definition of a notebook instance.
+                :class:``~.instance.Instance``: The definition of a
+                notebook instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -1089,7 +1090,7 @@ class NotebookServiceAsyncClient:
         r"""Lists environments in a project.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.ListEnvironmentsRequest`):
+            request (:class:`~.service.ListEnvironmentsRequest`):
                 The request object. Request for listing environments.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1099,7 +1100,7 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.notebooks_v1beta1.services.notebook_service.pagers.ListEnvironmentsAsyncPager:
+            ~.pagers.ListEnvironmentsAsyncPager:
                 Response for listing environments.
                 Iterating over this object will yield
                 results and resolve additional pages
@@ -1147,7 +1148,7 @@ class NotebookServiceAsyncClient:
         r"""Gets details of a single Environment.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.GetEnvironmentRequest`):
+            request (:class:`~.service.GetEnvironmentRequest`):
                 The request object. Request for getting a notebook
                 environment.
 
@@ -1158,7 +1159,7 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.notebooks_v1beta1.types.Environment:
+            ~.environment.Environment:
                 Definition of a software environment
                 that is used to start a notebook
                 instance.
@@ -1199,7 +1200,7 @@ class NotebookServiceAsyncClient:
         r"""Creates a new Environment.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.CreateEnvironmentRequest`):
+            request (:class:`~.service.CreateEnvironmentRequest`):
                 The request object. Request for creating a notebook
                 environment.
 
@@ -1210,11 +1211,13 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.cloud.notebooks_v1beta1.types.Environment` Definition of a software environment that is used to start a notebook
-                   instance.
+                The result type for the operation will be
+                :class:``~.environment.Environment``: Definition of a
+                software environment that is used to start a notebook
+                instance.
 
         """
         # Create or coerce a protobuf request object.
@@ -1260,7 +1263,7 @@ class NotebookServiceAsyncClient:
         r"""Deletes a single Environment.
 
         Args:
-            request (:class:`google.cloud.notebooks_v1beta1.types.DeleteEnvironmentRequest`):
+            request (:class:`~.service.DeleteEnvironmentRequest`):
                 The request object. Request for deleting a notebook
                 environment.
 
@@ -1271,22 +1274,24 @@ class NotebookServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.api_core.operation_async.AsyncOperation:
+            ~.operation_async.AsyncOperation:
                 An object representing a long-running operation.
 
-                The result type for the operation will be :class:`google.protobuf.empty_pb2.Empty` A generic empty message that you can re-use to avoid defining duplicated
-                   empty messages in your APIs. A typical example is to
-                   use it as the request or the response type of an API
-                   method. For instance:
+                The result type for the operation will be
+                :class:``~.empty.Empty``: A generic empty message that
+                you can re-use to avoid defining duplicated empty
+                messages in your APIs. A typical example is to use it as
+                the request or the response type of an API method. For
+                instance:
 
-                      service Foo {
-                         rpc Bar(google.protobuf.Empty) returns
-                         (google.protobuf.Empty);
+                ::
 
-                      }
+                    service Foo {
+                      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
+                    }
 
-                   The JSON representation for Empty is empty JSON
-                   object {}.
+                The JSON representation for ``Empty`` is empty JSON
+                object ``{}``.
 
         """
         # Create or coerce a protobuf request object.

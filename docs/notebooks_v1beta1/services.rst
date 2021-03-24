@@ -1,6 +1,6 @@
 Services for Google Cloud Notebooks v1beta1 API
 ===============================================
-.. toctree::
-    :maxdepth: 2
 
-    notebook_service
+.. automodule:: google.cloud.notebooks_v1beta1.services.notebook_service
+    :members:
+    :inherited-members:

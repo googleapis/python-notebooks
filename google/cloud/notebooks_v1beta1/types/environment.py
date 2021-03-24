@@ -39,10 +39,10 @@ class Environment(proto.Message):
             Display name of this environment for the UI.
         description (str):
             A brief description of this environment.
-        vm_image (google.cloud.notebooks_v1beta1.types.VmImage):
+        vm_image (~.environment.VmImage):
             Use a Compute Engine VM image to start the
             notebook instance.
-        container_image (google.cloud.notebooks_v1beta1.types.ContainerImage):
+        container_image (~.environment.ContainerImage):
             Use a container image to start the notebook
             instance.
         post_startup_script (str):
@@ -50,7 +50,7 @@ class Environment(proto.Message):
             notebook instance fully boots up. The path must be a URL or
             Cloud Storage path. Example:
             ``"gs://path-to-file/file-name"``
-        create_time (google.protobuf.timestamp_pb2.Timestamp):
+        create_time (~.timestamp.Timestamp):
             Output only. The time at which this
             environment was created.
     """
