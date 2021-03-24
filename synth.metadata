@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "c059c46957b0eb83078e61b4a5170c3d09ea96e6",
-        "internalRef": "357075713"
+        "sha": "9cf98d5612d6d60eb3513372764721c8787dd340",
+        "internalRef": "359069637"
       }
     },
     {
@@ -118,7 +118,6 @@
     "google/cloud/notebooks_v1beta1/types/instance.py",
     "google/cloud/notebooks_v1beta1/types/service.py",
     "mypy.ini",
-    "notebooks-v1beta1-py.tar.gz",
     "noxfile.py",
     "renovate.json",
     "scripts/decrypt-secrets.sh",
