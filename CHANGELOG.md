@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/googleapis/python-notebooks/compare/v0.1.2...v0.2.0) (2021-04-26)
+
+
+### Features
+
+* add `from_service_account_info` ([#26](https://www.github.com/googleapis/python-notebooks/issues/26)) ([4999922](https://www.github.com/googleapis/python-notebooks/commit/4999922dc0f6eaebc8aec58929176ab6b87cfdca))
+
 ### [0.1.2](https://www.github.com/googleapis/python-notebooks/compare/v0.1.1...v0.1.2) (2021-02-08)
 
 
