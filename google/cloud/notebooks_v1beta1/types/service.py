@@ -229,7 +229,7 @@ class SetInstanceLabelsRequest(proto.Message):
     """
 
     name = proto.Field(proto.STRING, number=1,)
-    labels = proto.MapField(proto.STRING, proto.STRING, number=2,)
+    labels = proto.MapField(proto.STRING, proto.STRING, number=2)
 
 
 class DeleteInstanceRequest(proto.Message):
@@ -296,7 +296,7 @@ class ReportInstanceInfoRequest(proto.Message):
 
     name = proto.Field(proto.STRING, number=1,)
     vm_id = proto.Field(proto.STRING, number=2,)
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=3,)
+    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
 
 
 class IsInstanceUpgradeableRequest(proto.Message):

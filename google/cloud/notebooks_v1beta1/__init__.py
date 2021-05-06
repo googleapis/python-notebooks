@@ -45,17 +45,15 @@ from .types.service import UpgradeInstanceInternalRequest
 from .types.service import UpgradeInstanceRequest
 
 __all__ = (
-    "NotebookServiceClient",
     "ContainerImage",
-    "Environment",
-    "VmImage",
-    "Instance",
     "CreateEnvironmentRequest",
     "CreateInstanceRequest",
     "DeleteEnvironmentRequest",
     "DeleteInstanceRequest",
+    "Environment",
     "GetEnvironmentRequest",
     "GetInstanceRequest",
+    "Instance",
     "IsInstanceUpgradeableRequest",
     "IsInstanceUpgradeableResponse",
     "ListEnvironmentsRequest",
@@ -73,4 +71,6 @@ __all__ = (
     "StopInstanceRequest",
     "UpgradeInstanceInternalRequest",
     "UpgradeInstanceRequest",
+    "VmImage",
+    "NotebookServiceClient",
 )
