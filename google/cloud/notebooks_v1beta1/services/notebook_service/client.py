@@ -370,8 +370,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.ListInstancesRequest):
-                The request object.
-                Request for listing notebook
+                The request object. Request for listing notebook
                 instances.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -430,8 +429,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.GetInstanceRequest):
-                The request object.
-                Request for getting a notebook
+                The request object. Request for getting a notebook
                 instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -482,8 +480,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.CreateInstanceRequest):
-                The request object.
-                Request for creating a notebook
+                The request object. Request for creating a notebook
                 instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -549,8 +546,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.RegisterInstanceRequest):
-                The request object.
-                Request for registering a notebook
+                The request object. Request for registering a notebook
                 instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -611,8 +607,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.SetInstanceAcceleratorRequest):
-                The request object.
-                Request for setting instance
+                The request object. Request for setting instance
                 accelerator.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -673,8 +668,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.SetInstanceMachineTypeRequest):
-                The request object.
-                Request for setting instance machine
+                The request object. Request for setting instance machine
                 type.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -737,8 +731,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.SetInstanceLabelsRequest):
-                The request object.
-                Request for setting instance labels.
+                The request object. Request for setting instance labels.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -798,8 +791,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.DeleteInstanceRequest):
-                The request object.
-                Request for deleting a notebook
+                The request object. Request for deleting a notebook
                 instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -870,8 +862,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.StartInstanceRequest):
-                The request object.
-                Request for starting a notebook
+                The request object. Request for starting a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -932,8 +923,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.StopInstanceRequest):
-                The request object.
-                Request for stopping a notebook
+                The request object. Request for stopping a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -994,8 +984,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.ResetInstanceRequest):
-                The request object.
-                Request for reseting a notebook
+                The request object. Request for reseting a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1060,8 +1049,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.ReportInstanceInfoRequest):
-                The request object.
-                Request for notebook instances to
+                The request object. Request for notebook instances to
                 report information to Notebooks API.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1122,8 +1110,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.IsInstanceUpgradeableRequest):
-                The request object.
-                Request for checking if a notebook
+                The request object. Request for checking if a notebook
                 instance is upgradeable.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1175,8 +1162,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.UpgradeInstanceRequest):
-                The request object.
-                Request for upgrading a notebook
+                The request object. Request for upgrading a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1239,8 +1225,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.UpgradeInstanceInternalRequest):
-                The request object.
-                Request for upgrading a notebook
+                The request object. Request for upgrading a notebook
                 instance from within the VM
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1303,8 +1288,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.ListEnvironmentsRequest):
-                The request object.
-                Request for listing environments.
+                The request object. Request for listing environments.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1361,8 +1345,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.GetEnvironmentRequest):
-                The request object.
-                Request for getting a notebook
+                The request object. Request for getting a notebook
                 environment.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1413,8 +1396,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.CreateEnvironmentRequest):
-                The request object.
-                Request for creating a notebook
+                The request object. Request for creating a notebook
                 environment.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1474,8 +1456,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         Args:
             request (google.cloud.notebooks_v1beta1.types.DeleteEnvironmentRequest):
-                The request object.
-                Request for deleting a notebook
+                The request object. Request for deleting a notebook
                 environment.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.

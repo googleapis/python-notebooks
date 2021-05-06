@@ -14,12 +14,13 @@
 # limitations under the License.
 #
 
-from google.cloud.notebooks_v1beta1.services.notebook_service.async_client import (
-    NotebookServiceAsyncClient,
-)
 from google.cloud.notebooks_v1beta1.services.notebook_service.client import (
     NotebookServiceClient,
 )
+from google.cloud.notebooks_v1beta1.services.notebook_service.async_client import (
+    NotebookServiceAsyncClient,
+)
+
 from google.cloud.notebooks_v1beta1.types.environment import ContainerImage
 from google.cloud.notebooks_v1beta1.types.environment import Environment
 from google.cloud.notebooks_v1beta1.types.environment import VmImage
@@ -49,23 +50,24 @@ from google.cloud.notebooks_v1beta1.types.service import UpgradeInstanceInternal
 from google.cloud.notebooks_v1beta1.types.service import UpgradeInstanceRequest
 
 __all__ = (
+    "NotebookServiceClient",
+    "NotebookServiceAsyncClient",
     "ContainerImage",
+    "Environment",
+    "VmImage",
+    "Instance",
     "CreateEnvironmentRequest",
     "CreateInstanceRequest",
     "DeleteEnvironmentRequest",
     "DeleteInstanceRequest",
-    "Environment",
     "GetEnvironmentRequest",
     "GetInstanceRequest",
-    "Instance",
     "IsInstanceUpgradeableRequest",
     "IsInstanceUpgradeableResponse",
     "ListEnvironmentsRequest",
     "ListEnvironmentsResponse",
     "ListInstancesRequest",
     "ListInstancesResponse",
-    "NotebookServiceAsyncClient",
-    "NotebookServiceClient",
     "OperationMetadata",
     "RegisterInstanceRequest",
     "ReportInstanceInfoRequest",
@@ -77,5 +79,4 @@ __all__ = (
     "StopInstanceRequest",
     "UpgradeInstanceInternalRequest",
     "UpgradeInstanceRequest",
-    "VmImage",
 )

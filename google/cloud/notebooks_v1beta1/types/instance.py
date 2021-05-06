@@ -228,8 +228,8 @@ class Instance(proto.Message):
     no_proxy_access = proto.Field(proto.BOOL, number=18,)
     network = proto.Field(proto.STRING, number=19,)
     subnet = proto.Field(proto.STRING, number=20,)
-    labels = proto.MapField(proto.STRING, proto.STRING, number=21)
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=22)
+    labels = proto.MapField(proto.STRING, proto.STRING, number=21,)
+    metadata = proto.MapField(proto.STRING, proto.STRING, number=22,)
     create_time = proto.Field(proto.MESSAGE, number=23, message=timestamp.Timestamp,)
     update_time = proto.Field(proto.MESSAGE, number=24, message=timestamp.Timestamp,)
 
