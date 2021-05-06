@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 #
 
 from .services.notebook_service import NotebookServiceClient
+
 from .types.environment import ContainerImage
 from .types.environment import Environment
 from .types.environment import VmImage
@@ -43,7 +43,6 @@ from .types.service import StartInstanceRequest
 from .types.service import StopInstanceRequest
 from .types.service import UpgradeInstanceInternalRequest
 from .types.service import UpgradeInstanceRequest
-
 
 __all__ = (
     "ContainerImage",

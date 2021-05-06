@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import warnings
-from typing import Callable, Dict, Optional, Sequence, Tuple
+from typing import Callable, Dict, Optional, Sequence, Tuple, Union
 
 from google.api_core import grpc_helpers  # type: ignore
 from google.api_core import operations_v1  # type: ignore
@@ -31,7 +29,6 @@ from google.cloud.notebooks_v1beta1.types import environment
 from google.cloud.notebooks_v1beta1.types import instance
 from google.cloud.notebooks_v1beta1.types import service
 from google.longrunning import operations_pb2 as operations  # type: ignore
-
 from .base import NotebookServiceTransport, DEFAULT_CLIENT_INFO
 
 
@@ -68,7 +65,8 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]): The hostname to connect to.
+            host (Optional[str]):
+                 The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -210,13 +208,15 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
             google.api_core.exceptions.DuplicateCredentialArgs: If both ``credentials``
               and ``credentials_file`` are passed.
         """
-        scopes = scopes or cls.AUTH_SCOPES
+
+        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
+
         return grpc_helpers.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes,
             quota_project_id=quota_project_id,
+            **self_signed_jwt_kwargs,
             **kwargs,
         )
 
@@ -244,7 +244,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def list_instances(
         self,
     ) -> Callable[[service.ListInstancesRequest], service.ListInstancesResponse]:
-        r"""Return a callable for the list instances method over gRPC.
+        r"""Return a callable for the
+        list instances
+          method over gRPC.
 
         Lists instances in a given project and location.
 
@@ -268,7 +270,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
 
     @property
     def get_instance(self) -> Callable[[service.GetInstanceRequest], instance.Instance]:
-        r"""Return a callable for the get instance method over gRPC.
+        r"""Return a callable for the
+        get instance
+          method over gRPC.
 
         Gets details of a single Instance.
 
@@ -294,7 +298,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def create_instance(
         self,
     ) -> Callable[[service.CreateInstanceRequest], operations.Operation]:
-        r"""Return a callable for the create instance method over gRPC.
+        r"""Return a callable for the
+        create instance
+          method over gRPC.
 
         Creates a new Instance in a given project and
         location.
@@ -321,7 +327,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def register_instance(
         self,
     ) -> Callable[[service.RegisterInstanceRequest], operations.Operation]:
-        r"""Return a callable for the register instance method over gRPC.
+        r"""Return a callable for the
+        register instance
+          method over gRPC.
 
         Registers an existing legacy notebook instance to the
         Notebooks API server. Legacy instances are instances
@@ -352,7 +360,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def set_instance_accelerator(
         self,
     ) -> Callable[[service.SetInstanceAcceleratorRequest], operations.Operation]:
-        r"""Return a callable for the set instance accelerator method over gRPC.
+        r"""Return a callable for the
+        set instance accelerator
+          method over gRPC.
 
         Updates the guest accelerators of a single Instance.
 
@@ -378,7 +388,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def set_instance_machine_type(
         self,
     ) -> Callable[[service.SetInstanceMachineTypeRequest], operations.Operation]:
-        r"""Return a callable for the set instance machine type method over gRPC.
+        r"""Return a callable for the
+        set instance machine type
+          method over gRPC.
 
         Updates the machine type of a single Instance.
 
@@ -404,7 +416,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def set_instance_labels(
         self,
     ) -> Callable[[service.SetInstanceLabelsRequest], operations.Operation]:
-        r"""Return a callable for the set instance labels method over gRPC.
+        r"""Return a callable for the
+        set instance labels
+          method over gRPC.
 
         Updates the labels of an Instance.
 
@@ -430,7 +444,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def delete_instance(
         self,
     ) -> Callable[[service.DeleteInstanceRequest], operations.Operation]:
-        r"""Return a callable for the delete instance method over gRPC.
+        r"""Return a callable for the
+        delete instance
+          method over gRPC.
 
         Deletes a single Instance.
 
@@ -456,7 +472,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def start_instance(
         self,
     ) -> Callable[[service.StartInstanceRequest], operations.Operation]:
-        r"""Return a callable for the start instance method over gRPC.
+        r"""Return a callable for the
+        start instance
+          method over gRPC.
 
         Starts a notebook instance.
 
@@ -482,7 +500,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def stop_instance(
         self,
     ) -> Callable[[service.StopInstanceRequest], operations.Operation]:
-        r"""Return a callable for the stop instance method over gRPC.
+        r"""Return a callable for the
+        stop instance
+          method over gRPC.
 
         Stops a notebook instance.
 
@@ -508,7 +528,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def reset_instance(
         self,
     ) -> Callable[[service.ResetInstanceRequest], operations.Operation]:
-        r"""Return a callable for the reset instance method over gRPC.
+        r"""Return a callable for the
+        reset instance
+          method over gRPC.
 
         Resets a notebook instance.
 
@@ -534,7 +556,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def report_instance_info(
         self,
     ) -> Callable[[service.ReportInstanceInfoRequest], operations.Operation]:
-        r"""Return a callable for the report instance info method over gRPC.
+        r"""Return a callable for the
+        report instance info
+          method over gRPC.
 
         Allows notebook instances to
         report their latest instance information to the
@@ -566,7 +590,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     ) -> Callable[
         [service.IsInstanceUpgradeableRequest], service.IsInstanceUpgradeableResponse
     ]:
-        r"""Return a callable for the is instance upgradeable method over gRPC.
+        r"""Return a callable for the
+        is instance upgradeable
+          method over gRPC.
 
         Check if a notebook instance is upgradable.
 
@@ -592,7 +618,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def upgrade_instance(
         self,
     ) -> Callable[[service.UpgradeInstanceRequest], operations.Operation]:
-        r"""Return a callable for the upgrade instance method over gRPC.
+        r"""Return a callable for the
+        upgrade instance
+          method over gRPC.
 
         Upgrades a notebook instance to the latest version.
 
@@ -618,7 +646,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def upgrade_instance_internal(
         self,
     ) -> Callable[[service.UpgradeInstanceInternalRequest], operations.Operation]:
-        r"""Return a callable for the upgrade instance internal method over gRPC.
+        r"""Return a callable for the
+        upgrade instance internal
+          method over gRPC.
 
         Allows notebook instances to
         call this endpoint to upgrade themselves. Do not use
@@ -646,7 +676,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def list_environments(
         self,
     ) -> Callable[[service.ListEnvironmentsRequest], service.ListEnvironmentsResponse]:
-        r"""Return a callable for the list environments method over gRPC.
+        r"""Return a callable for the
+        list environments
+          method over gRPC.
 
         Lists environments in a project.
 
@@ -672,7 +704,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def get_environment(
         self,
     ) -> Callable[[service.GetEnvironmentRequest], environment.Environment]:
-        r"""Return a callable for the get environment method over gRPC.
+        r"""Return a callable for the
+        get environment
+          method over gRPC.
 
         Gets details of a single Environment.
 
@@ -698,7 +732,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def create_environment(
         self,
     ) -> Callable[[service.CreateEnvironmentRequest], operations.Operation]:
-        r"""Return a callable for the create environment method over gRPC.
+        r"""Return a callable for the
+        create environment
+          method over gRPC.
 
         Creates a new Environment.
 
@@ -724,7 +760,9 @@ class NotebookServiceGrpcTransport(NotebookServiceTransport):
     def delete_environment(
         self,
     ) -> Callable[[service.DeleteEnvironmentRequest], operations.Operation]:
-        r"""Return a callable for the delete environment method over gRPC.
+        r"""Return a callable for the
+        delete environment
+          method over gRPC.
 
         Deletes a single Environment.
 
