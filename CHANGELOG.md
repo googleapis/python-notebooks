@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/googleapis/python-notebooks/compare/v0.2.0...v0.2.1) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-notebooks/issues/1127)) ([#51](https://www.github.com/googleapis/python-notebooks/issues/51)) ([4b4cb00](https://www.github.com/googleapis/python-notebooks/commit/4b4cb00dc4245ab5090eb29434af30a3b4e736a0)), closes [#1126](https://www.github.com/googleapis/python-notebooks/issues/1126)
+
 ## [0.2.0](https://www.github.com/googleapis/python-notebooks/compare/v0.1.2...v0.2.0) (2021-05-28)
 
 
