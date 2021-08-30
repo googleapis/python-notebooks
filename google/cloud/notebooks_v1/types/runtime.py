@@ -211,8 +211,9 @@ class LocalDisk(proto.Message):
             or SCSI. For performance characteristics of SCSI
             over NVMe, see Local SSD performance. Valid
             values:
-                NVME
-                SCSI
+
+            * NVME
+            * SCSI
         kind (str):
             Output only. Type of the resource. Always
             compute#attachedDisk for attached disks.
@@ -230,8 +231,9 @@ class LocalDisk(proto.Message):
             Specifies the type of the disk, either
             SCRATCH or PERSISTENT. If not specified, the
             default is PERSISTENT. Valid values:
-                PERSISTENT
-                SCRATCH
+
+            * PERSISTENT
+            * SCRATCH
     """
 
     class RuntimeGuestOsFeature(proto.Message):

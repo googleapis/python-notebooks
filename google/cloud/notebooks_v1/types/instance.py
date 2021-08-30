@@ -26,6 +26,7 @@ __protobuf__ = proto.module(
 
 class ReservationAffinity(proto.Message):
     r"""Reservation Affinity for consuming Zonal reservation.
+
     Attributes:
         consume_reservation_type (google.cloud.notebooks_v1.types.ReservationAffinity.Type):
             Optional. Type of reservation to consume
@@ -53,6 +54,7 @@ class ReservationAffinity(proto.Message):
 
 class Instance(proto.Message):
     r"""The definition of a notebook instance.
+
     Attributes:
         name (str):
             Output only. The name of this notebook instance. Format:
@@ -265,6 +267,7 @@ class Instance(proto.Message):
 
     class Disk(proto.Message):
         r"""An instance-attached disk resource.
+
         Attributes:
             auto_delete (bool):
                 Indicates whether the disk will be auto-
@@ -308,8 +311,9 @@ class Instance(proto.Message):
                 or SCSI. For performance characteristics of SCSI
                 over NVMe, see Local SSD performance.
                 Valid values:
-                    NVME
-                    SCSI
+
+                * NVME
+                * SCSI
             kind (str):
                 Type of the resource. Always
                 compute#attachedDisk for attached disks.
@@ -328,12 +332,14 @@ class Instance(proto.Message):
             type_ (str):
                 Indicates the type of the disk, either
                 SCRATCH or PERSISTENT. Valid values:
-                    PERSISTENT
-                    SCRATCH
+
+                * PERSISTENT
+                * SCRATCH
         """
 
         class GuestOsFeature(proto.Message):
             r"""Guest OS features for boot disk.
+
             Attributes:
                 type_ (str):
                     The ID of a supported feature. Read Enabling guest operating
@@ -392,6 +398,7 @@ class Instance(proto.Message):
 
     class UpgradeHistoryEntry(proto.Message):
         r"""The entry of VM image upgrade history.
+
         Attributes:
             snapshot (str):
                 The snapshot of the boot disk of this
