@@ -1,5 +1,5 @@
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -40,26 +39,25 @@ def partition(
 class notebooksCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'create_environment': ('parent', 'environment_id', 'environment', ),
-    'create_instance': ('parent', 'instance_id', 'instance', ),
-    'delete_environment': ('name', ),
-    'delete_instance': ('name', ),
-    'get_environment': ('name', ),
-    'get_instance': ('name', ),
-    'is_instance_upgradeable': ('notebook_instance', ),
-    'list_environments': ('parent', 'page_size', 'page_token', ),
-    'list_instances': ('parent', 'page_size', 'page_token', ),
-    'register_instance': ('parent', 'instance_id', ),
-    'report_instance_info': ('name', 'vm_id', 'metadata', ),
-    'reset_instance': ('name', ),
-    'set_instance_accelerator': ('name', 'type', 'core_count', ),
-    'set_instance_labels': ('name', 'labels', ),
-    'set_instance_machine_type': ('name', 'machine_type', ),
-    'start_instance': ('name', ),
-    'stop_instance': ('name', ),
-    'upgrade_instance': ('name', ),
-    'upgrade_instance_internal': ('name', 'vm_id', ),
-
+        'create_environment': ('parent', 'environment_id', 'environment', ),
+        'create_instance': ('parent', 'instance_id', 'instance', ),
+        'delete_environment': ('name', ),
+        'delete_instance': ('name', ),
+        'get_environment': ('name', ),
+        'get_instance': ('name', ),
+        'is_instance_upgradeable': ('notebook_instance', ),
+        'list_environments': ('parent', 'page_size', 'page_token', ),
+        'list_instances': ('parent', 'page_size', 'page_token', ),
+        'register_instance': ('parent', 'instance_id', ),
+        'report_instance_info': ('name', 'vm_id', 'metadata', ),
+        'reset_instance': ('name', ),
+        'set_instance_accelerator': ('name', 'type_', 'core_count', ),
+        'set_instance_labels': ('name', 'labels', ),
+        'set_instance_machine_type': ('name', 'machine_type', ),
+        'start_instance': ('name', ),
+        'stop_instance': ('name', ),
+        'upgrade_instance': ('name', ),
+        'upgrade_instance_internal': ('name', 'vm_id', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -78,7 +76,7 @@ class notebooksCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -90,7 +88,7 @@ class notebooksCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that
