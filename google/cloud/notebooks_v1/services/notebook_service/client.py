@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -509,7 +509,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_list_instances():
                 # Create a client
@@ -617,7 +617,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_get_instance():
                 # Create a client
@@ -716,7 +716,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_create_instance():
                 # Create a client
@@ -854,7 +854,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_register_instance():
                 # Create a client
@@ -944,7 +944,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_set_instance_accelerator():
                 # Create a client
@@ -1035,7 +1035,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_set_instance_machine_type():
                 # Create a client
@@ -1127,7 +1127,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_update_instance_config():
                 # Create a client
@@ -1218,7 +1218,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_update_shielded_instance_config():
                 # Create a client
@@ -1310,7 +1310,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_set_instance_labels():
                 # Create a client
@@ -1399,7 +1399,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_delete_instance():
                 # Create a client
@@ -1518,7 +1518,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_start_instance():
                 # Create a client
@@ -1607,7 +1607,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_stop_instance():
                 # Create a client
@@ -1696,7 +1696,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_reset_instance():
                 # Create a client
@@ -1790,7 +1790,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_report_instance_info():
                 # Create a client
@@ -1880,7 +1880,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_is_instance_upgradeable():
                 # Create a client
@@ -1957,7 +1957,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_get_instance_health():
                 # Create a client
@@ -2051,7 +2051,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_upgrade_instance():
                 # Create a client
@@ -2142,7 +2142,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_rollback_instance():
                 # Create a client
@@ -2235,7 +2235,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_upgrade_instance_internal():
                 # Create a client
@@ -2328,7 +2328,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_list_environments():
                 # Create a client
@@ -2434,7 +2434,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_get_environment():
                 # Create a client
@@ -2532,7 +2532,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_create_environment():
                 # Create a client
@@ -2668,7 +2668,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_delete_environment():
                 # Create a client
@@ -2788,7 +2788,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_list_schedules():
                 # Create a client
@@ -2896,7 +2896,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_get_schedule():
                 # Create a client
@@ -2989,7 +2989,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_delete_schedule():
                 # Create a client
@@ -3112,7 +3112,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_create_schedule():
                 # Create a client
@@ -3238,7 +3238,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_trigger_schedule():
                 # Create a client
@@ -3328,7 +3328,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_list_executions():
                 # Create a client
@@ -3436,7 +3436,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_get_execution():
                 # Create a client
@@ -3531,7 +3531,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_delete_execution():
                 # Create a client
@@ -3655,7 +3655,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import notebooks_v1
+                    from google.cloud import notebooks_v1
 
             def sample_create_execution():
                 # Create a client
