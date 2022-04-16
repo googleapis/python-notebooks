@@ -132,11 +132,6 @@ class ExecutionTemplate(proto.Message):
             executions.
 
             This field is a member of `oneof`_ ``job_parameters``.
-        kernel_spec (str):
-            Name of the kernel spec to use. This must be
-            specified if the kernel spec name on the
-            execution target does not match the name in the
-            input notebook file.
     """
 
     class ScaleTier(proto.Enum):
@@ -257,10 +252,6 @@ class ExecutionTemplate(proto.Message):
         number=12,
         oneof="job_parameters",
         message=DataprocParameters,
-    )
-    kernel_spec = proto.Field(
-        proto.STRING,
-        number=13,
     )
 
 
