@@ -3491,7 +3491,6 @@ def test_managed_notebook_service_transport_auth_adc(transport_class):
     [
         transports.ManagedNotebookServiceGrpcTransport,
         transports.ManagedNotebookServiceGrpcAsyncIOTransport,
-        transports.ManagedNotebookServiceRestTransport,
     ],
 )
 def test_managed_notebook_service_transport_auth_gdch_credentials(transport_class):

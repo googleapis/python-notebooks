@@ -4305,7 +4305,6 @@ def test_notebook_service_transport_auth_adc(transport_class):
     [
         transports.NotebookServiceGrpcTransport,
         transports.NotebookServiceGrpcAsyncIOTransport,
-        transports.NotebookServiceRestTransport,
     ],
 )
 def test_notebook_service_transport_auth_gdch_credentials(transport_class):
