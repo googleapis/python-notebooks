@@ -3,7 +3,7 @@ Python Client for AI Platform Notebooks API
 
 |stable| |pypi| |versions|
 
-`AI Platform Notebooks API`_: 
+`AI Platform Notebooks API`_: is a managed service that offers an integrated and secure JupyterLab environment for data scientists and machine learning developers to experiment, develop, and deploy models into production. Users can create instances running JupyterLab that come pre-installed with the latest data science and machine learning frameworks in a single click.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
