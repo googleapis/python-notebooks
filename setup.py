@@ -20,7 +20,7 @@ import os
 
 import setuptools  # type: ignore
 
-version = "1.3.2"
+version = "1.4.0"
 
 package_root = os.path.abspath(os.path.dirname(__file__))
 
@@ -41,19 +41,15 @@ setuptools.setup(
     platforms="Posix; MacOS X; Windows",
     include_package_data=True,
     install_requires=(
-        # NOTE: Maintainers, please do not require google-api-core>=2.x.x
-        # Until this issue is closed
-        # https://github.com/googleapis/google-cloud-python/issues/10566
-        "google-api-core[grpc] >= 1.31.5, <3.0.0dev,!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.0",
+        "google-api-core[grpc] >= 2.8.0, <3.0.0dev",
         "proto-plus >= 1.15.0, <2.0.0dev",
         "protobuf >=4.21.1, <4.22.0",
     ),
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
