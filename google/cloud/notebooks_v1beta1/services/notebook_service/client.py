@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -63,7 +74,7 @@ class NotebookServiceClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[NotebookServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -352,7 +363,7 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, NotebookServiceTransport, None] = None,
+        transport: Optional[Union[str, NotebookServiceTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -450,10 +461,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def list_instances(
         self,
-        request: Union[service.ListInstancesRequest, dict] = None,
+        request: Optional[Union[service.ListInstancesRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListInstancesPager:
         r"""Lists instances in a given project and location.
@@ -544,10 +555,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def get_instance(
         self,
-        request: Union[service.GetInstanceRequest, dict] = None,
+        request: Optional[Union[service.GetInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> instance.Instance:
         r"""Gets details of a single Instance.
@@ -625,10 +636,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def create_instance(
         self,
-        request: Union[service.CreateInstanceRequest, dict] = None,
+        request: Optional[Union[service.CreateInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a new Instance in a given project and
@@ -729,10 +740,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def register_instance(
         self,
-        request: Union[service.RegisterInstanceRequest, dict] = None,
+        request: Optional[Union[service.RegisterInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Registers an existing legacy notebook instance to the
@@ -831,10 +842,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def set_instance_accelerator(
         self,
-        request: Union[service.SetInstanceAcceleratorRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceAcceleratorRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates the guest accelerators of a single Instance.
@@ -929,10 +940,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def set_instance_machine_type(
         self,
-        request: Union[service.SetInstanceMachineTypeRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceMachineTypeRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates the machine type of a single Instance.
@@ -1028,10 +1039,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def set_instance_labels(
         self,
-        request: Union[service.SetInstanceLabelsRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceLabelsRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Updates the labels of an Instance.
@@ -1123,10 +1134,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def delete_instance(
         self,
-        request: Union[service.DeleteInstanceRequest, dict] = None,
+        request: Optional[Union[service.DeleteInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes a single Instance.
@@ -1226,10 +1237,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def start_instance(
         self,
-        request: Union[service.StartInstanceRequest, dict] = None,
+        request: Optional[Union[service.StartInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Starts a notebook instance.
@@ -1322,10 +1333,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def stop_instance(
         self,
-        request: Union[service.StopInstanceRequest, dict] = None,
+        request: Optional[Union[service.StopInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Stops a notebook instance.
@@ -1418,10 +1429,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def reset_instance(
         self,
-        request: Union[service.ResetInstanceRequest, dict] = None,
+        request: Optional[Union[service.ResetInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Resets a notebook instance.
@@ -1514,10 +1525,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def report_instance_info(
         self,
-        request: Union[service.ReportInstanceInfoRequest, dict] = None,
+        request: Optional[Union[service.ReportInstanceInfoRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Allows notebook instances to
@@ -1615,10 +1626,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def is_instance_upgradeable(
         self,
-        request: Union[service.IsInstanceUpgradeableRequest, dict] = None,
+        request: Optional[Union[service.IsInstanceUpgradeableRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.IsInstanceUpgradeableResponse:
         r"""Check if a notebook instance is upgradable.
@@ -1698,10 +1709,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def upgrade_instance(
         self,
-        request: Union[service.UpgradeInstanceRequest, dict] = None,
+        request: Optional[Union[service.UpgradeInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Upgrades a notebook instance to the latest version.
@@ -1794,10 +1805,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def upgrade_instance_internal(
         self,
-        request: Union[service.UpgradeInstanceInternalRequest, dict] = None,
+        request: Optional[Union[service.UpgradeInstanceInternalRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Allows notebook instances to
@@ -1895,10 +1906,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def list_environments(
         self,
-        request: Union[service.ListEnvironmentsRequest, dict] = None,
+        request: Optional[Union[service.ListEnvironmentsRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListEnvironmentsPager:
         r"""Lists environments in a project.
@@ -1987,10 +1998,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def get_environment(
         self,
-        request: Union[service.GetEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.GetEnvironmentRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> environment.Environment:
         r"""Gets details of a single Environment.
@@ -2069,10 +2080,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def create_environment(
         self,
-        request: Union[service.CreateEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.CreateEnvironmentRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a new Environment.
@@ -2170,10 +2181,10 @@ class NotebookServiceClient(metaclass=NotebookServiceClientMeta):
 
     def delete_environment(
         self,
-        request: Union[service.DeleteEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.DeleteEnvironmentRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes a single Environment.

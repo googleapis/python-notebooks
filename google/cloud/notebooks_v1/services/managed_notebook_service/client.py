@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -66,7 +77,7 @@ class ManagedNotebookServiceClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[ManagedNotebookServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -341,7 +352,7 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, ManagedNotebookServiceTransport, None] = None,
+        transport: Optional[Union[str, ManagedNotebookServiceTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -439,11 +450,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def list_runtimes(
         self,
-        request: Union[managed_service.ListRuntimesRequest, dict] = None,
+        request: Optional[Union[managed_service.ListRuntimesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListRuntimesPager:
         r"""Lists Runtimes in a given project and location.
@@ -554,11 +565,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def get_runtime(
         self,
-        request: Union[managed_service.GetRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.GetRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> runtime.Runtime:
         r"""Gets details of a single Runtime. The location must
@@ -657,13 +668,13 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def create_runtime(
         self,
-        request: Union[managed_service.CreateRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.CreateRuntimeRequest, dict]] = None,
         *,
-        parent: str = None,
-        runtime_id: str = None,
-        runtime: gcn_runtime.Runtime = None,
+        parent: Optional[str] = None,
+        runtime_id: Optional[str] = None,
+        runtime: Optional[gcn_runtime.Runtime] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Creates a new Runtime in a given project and
@@ -794,11 +805,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def delete_runtime(
         self,
-        request: Union[managed_service.DeleteRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.DeleteRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Deletes a single Runtime.
@@ -918,11 +929,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def start_runtime(
         self,
-        request: Union[managed_service.StartRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.StartRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Starts a Managed Notebook Runtime.
@@ -1039,11 +1050,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def stop_runtime(
         self,
-        request: Union[managed_service.StopRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.StopRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Stops a Managed Notebook Runtime.
@@ -1160,11 +1171,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def switch_runtime(
         self,
-        request: Union[managed_service.SwitchRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.SwitchRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Switch a Managed Notebook Runtime.
@@ -1277,11 +1288,11 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def reset_runtime(
         self,
-        request: Union[managed_service.ResetRuntimeRequest, dict] = None,
+        request: Optional[Union[managed_service.ResetRuntimeRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Resets a Managed Notebook Runtime.
@@ -1394,11 +1405,13 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def report_runtime_event(
         self,
-        request: Union[managed_service.ReportRuntimeEventRequest, dict] = None,
+        request: Optional[
+            Union[managed_service.ReportRuntimeEventRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation.Operation:
         r"""Report and process a runtime event.
@@ -1512,12 +1525,14 @@ class ManagedNotebookServiceClient(metaclass=ManagedNotebookServiceClientMeta):
 
     def refresh_runtime_token_internal(
         self,
-        request: Union[managed_service.RefreshRuntimeTokenInternalRequest, dict] = None,
+        request: Optional[
+            Union[managed_service.RefreshRuntimeTokenInternalRequest, dict]
+        ] = None,
         *,
-        name: str = None,
-        vm_id: str = None,
+        name: Optional[str] = None,
+        vm_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> managed_service.RefreshRuntimeTokenInternalResponse:
         r"""Gets an access token for the consumer service account

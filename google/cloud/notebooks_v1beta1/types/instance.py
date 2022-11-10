@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
@@ -57,7 +59,7 @@ class Instance(proto.Message):
         proxy_uri (str):
             Output only. The proxy endpoint that is used
             to access the Jupyter notebook.
-        instance_owners (Sequence[str]):
+        instance_owners (MutableSequence[str]):
             Input only. The owner of this instance after creation.
             Format: ``alias@example.com``
 
@@ -140,11 +142,11 @@ class Instance(proto.Message):
         subnet (str):
             The name of the subnet that this instance is in. Format:
             ``projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}``
-        labels (Mapping[str, str]):
+        labels (MutableMapping[str, str]):
             Labels to apply to this instance.
             These can be later modified by the setLabels
             method.
-        metadata (Mapping[str, str]):
+        metadata (MutableMapping[str, str]):
             Custom metadata to apply to this instance.
         create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. Instance creation time.
@@ -207,133 +209,133 @@ class Instance(proto.Message):
                 Count of cores of this accelerator.
         """
 
-        type_ = proto.Field(
+        type_: "Instance.AcceleratorType" = proto.Field(
             proto.ENUM,
             number=1,
             enum="Instance.AcceleratorType",
         )
-        core_count = proto.Field(
+        core_count: int = proto.Field(
             proto.INT64,
             number=2,
         )
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vm_image = proto.Field(
+    vm_image: environment.VmImage = proto.Field(
         proto.MESSAGE,
         number=2,
         oneof="environment",
         message=environment.VmImage,
     )
-    container_image = proto.Field(
+    container_image: environment.ContainerImage = proto.Field(
         proto.MESSAGE,
         number=3,
         oneof="environment",
         message=environment.ContainerImage,
     )
-    post_startup_script = proto.Field(
+    post_startup_script: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    proxy_uri = proto.Field(
+    proxy_uri: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    instance_owners = proto.RepeatedField(
+    instance_owners: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    service_account = proto.Field(
+    service_account: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    machine_type = proto.Field(
+    machine_type: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    accelerator_config = proto.Field(
+    accelerator_config: AcceleratorConfig = proto.Field(
         proto.MESSAGE,
         number=9,
         message=AcceleratorConfig,
     )
-    state = proto.Field(
+    state: State = proto.Field(
         proto.ENUM,
         number=10,
         enum=State,
     )
-    install_gpu_driver = proto.Field(
+    install_gpu_driver: bool = proto.Field(
         proto.BOOL,
         number=11,
     )
-    custom_gpu_driver_path = proto.Field(
+    custom_gpu_driver_path: str = proto.Field(
         proto.STRING,
         number=12,
     )
-    boot_disk_type = proto.Field(
+    boot_disk_type: DiskType = proto.Field(
         proto.ENUM,
         number=13,
         enum=DiskType,
     )
-    boot_disk_size_gb = proto.Field(
+    boot_disk_size_gb: int = proto.Field(
         proto.INT64,
         number=14,
     )
-    data_disk_type = proto.Field(
+    data_disk_type: DiskType = proto.Field(
         proto.ENUM,
         number=25,
         enum=DiskType,
     )
-    data_disk_size_gb = proto.Field(
+    data_disk_size_gb: int = proto.Field(
         proto.INT64,
         number=26,
     )
-    no_remove_data_disk = proto.Field(
+    no_remove_data_disk: bool = proto.Field(
         proto.BOOL,
         number=27,
     )
-    disk_encryption = proto.Field(
+    disk_encryption: DiskEncryption = proto.Field(
         proto.ENUM,
         number=15,
         enum=DiskEncryption,
     )
-    kms_key = proto.Field(
+    kms_key: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    no_public_ip = proto.Field(
+    no_public_ip: bool = proto.Field(
         proto.BOOL,
         number=17,
     )
-    no_proxy_access = proto.Field(
+    no_proxy_access: bool = proto.Field(
         proto.BOOL,
         number=18,
     )
-    network = proto.Field(
+    network: str = proto.Field(
         proto.STRING,
         number=19,
     )
-    subnet = proto.Field(
+    subnet: str = proto.Field(
         proto.STRING,
         number=20,
     )
-    labels = proto.MapField(
+    labels: MutableMapping[str, str] = proto.MapField(
         proto.STRING,
         proto.STRING,
         number=21,
     )
-    metadata = proto.MapField(
+    metadata: MutableMapping[str, str] = proto.MapField(
         proto.STRING,
         proto.STRING,
         number=22,
     )
-    create_time = proto.Field(
+    create_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=23,
         message=timestamp_pb2.Timestamp,
     )
-    update_time = proto.Field(
+    update_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=24,
         message=timestamp_pb2.Timestamp,

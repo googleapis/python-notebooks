@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
@@ -52,15 +54,15 @@ class ListRuntimesRequest(proto.Message):
             used to continue listing from the last result.
     """
 
-    parent = proto.Field(
+    parent: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    page_size = proto.Field(
+    page_size: int = proto.Field(
         proto.INT32,
         number=2,
     )
-    page_token = proto.Field(
+    page_token: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -70,13 +72,13 @@ class ListRuntimesResponse(proto.Message):
     r"""Response for listing Managed Notebook Runtimes.
 
     Attributes:
-        runtimes (Sequence[google.cloud.notebooks_v1.types.Runtime]):
+        runtimes (MutableSequence[google.cloud.notebooks_v1.types.Runtime]):
             A list of returned Runtimes.
         next_page_token (str):
             Page token that can be used to continue
             listing from the last result in the next list
             call.
-        unreachable (Sequence[str]):
+        unreachable (MutableSequence[str]):
             Locations that could not be reached. For example,
             ['us-west1', 'us-central1']. A ListRuntimesResponse will
             only contain either runtimes or unreachables,
@@ -86,16 +88,16 @@ class ListRuntimesResponse(proto.Message):
     def raw_page(self):
         return self
 
-    runtimes = proto.RepeatedField(
+    runtimes: MutableSequence[gcn_runtime.Runtime] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message=gcn_runtime.Runtime,
     )
-    next_page_token = proto.Field(
+    next_page_token: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    unreachable = proto.RepeatedField(
+    unreachable: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
@@ -110,7 +112,7 @@ class GetRuntimeRequest(proto.Message):
             ``projects/{project_id}/locations/{location}/runtimes/{runtime_id}``
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -132,20 +134,20 @@ class CreateRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    parent = proto.Field(
+    parent: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    runtime_id = proto.Field(
+    runtime_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    runtime = proto.Field(
+    runtime: gcn_runtime.Runtime = proto.Field(
         proto.MESSAGE,
         number=3,
         message=gcn_runtime.Runtime,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=4,
     )
@@ -162,11 +164,11 @@ class DeleteRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -183,11 +185,11 @@ class StartRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -204,11 +206,11 @@ class StopRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -229,20 +231,20 @@ class SwitchRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    machine_type = proto.Field(
+    machine_type: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    accelerator_config = proto.Field(
+    accelerator_config: gcn_runtime.RuntimeAcceleratorConfig = proto.Field(
         proto.MESSAGE,
         number=3,
         message=gcn_runtime.RuntimeAcceleratorConfig,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=4,
     )
@@ -259,11 +261,11 @@ class ResetRuntimeRequest(proto.Message):
             Idempotent request UUID.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    request_id = proto.Field(
+    request_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -284,15 +286,15 @@ class ReportRuntimeEventRequest(proto.Message):
             Required. The Event to be reported.
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vm_id = proto.Field(
+    vm_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    event = proto.Field(
+    event: gcn_event.Event = proto.Field(
         proto.MESSAGE,
         number=3,
         message=gcn_event.Event,
@@ -312,11 +314,11 @@ class RefreshRuntimeTokenInternalRequest(proto.Message):
             https://cloud.google.com/compute/docs/instances/verifying-instance-identity
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vm_id = proto.Field(
+    vm_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -332,11 +334,11 @@ class RefreshRuntimeTokenInternalResponse(proto.Message):
             Output only. Token expiration time.
     """
 
-    access_token = proto.Field(
+    access_token: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    expire_time = proto.Field(
+    expire_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=2,
         message=timestamp_pb2.Timestamp,

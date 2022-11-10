@@ -16,7 +16,17 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
@@ -180,9 +190,9 @@ class NotebookServiceAsyncClient:
     def __init__(
         self,
         *,
-        credentials: ga_credentials.Credentials = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, NotebookServiceTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
+        client_options: Optional[ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the notebook service client.
@@ -226,11 +236,11 @@ class NotebookServiceAsyncClient:
 
     async def list_instances(
         self,
-        request: Union[service.ListInstancesRequest, dict] = None,
+        request: Optional[Union[service.ListInstancesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListInstancesAsyncPager:
         r"""Lists instances in a given project and location.
@@ -263,7 +273,7 @@ class NotebookServiceAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ListInstancesRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ListInstancesRequest, dict]]):
                 The request object. Request for listing notebook
                 instances.
             parent (:class:`str`):
@@ -341,11 +351,11 @@ class NotebookServiceAsyncClient:
 
     async def get_instance(
         self,
-        request: Union[service.GetInstanceRequest, dict] = None,
+        request: Optional[Union[service.GetInstanceRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> instance.Instance:
         r"""Gets details of a single Instance.
@@ -377,7 +387,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.GetInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.GetInstanceRequest, dict]]):
                 The request object. Request for getting a notebook
                 instance.
             name (:class:`str`):
@@ -443,13 +453,13 @@ class NotebookServiceAsyncClient:
 
     async def create_instance(
         self,
-        request: Union[service.CreateInstanceRequest, dict] = None,
+        request: Optional[Union[service.CreateInstanceRequest, dict]] = None,
         *,
-        parent: str = None,
-        instance: gcn_instance.Instance = None,
-        instance_id: str = None,
+        parent: Optional[str] = None,
+        instance: Optional[gcn_instance.Instance] = None,
+        instance_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a new Instance in a given project and
@@ -493,7 +503,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.CreateInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.CreateInstanceRequest, dict]]):
                 The request object. Request for creating a notebook
                 instance.
             parent (:class:`str`):
@@ -586,10 +596,10 @@ class NotebookServiceAsyncClient:
 
     async def register_instance(
         self,
-        request: Union[service.RegisterInstanceRequest, dict] = None,
+        request: Optional[Union[service.RegisterInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Registers an existing legacy notebook instance to the
@@ -631,7 +641,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.RegisterInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.RegisterInstanceRequest, dict]]):
                 The request object. Request for registering a notebook
                 instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -687,10 +697,10 @@ class NotebookServiceAsyncClient:
 
     async def set_instance_accelerator(
         self,
-        request: Union[service.SetInstanceAcceleratorRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceAcceleratorRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Updates the guest accelerators of a single Instance.
@@ -728,7 +738,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.SetInstanceAcceleratorRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.SetInstanceAcceleratorRequest, dict]]):
                 The request object. Request for setting instance
                 accelerator.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -784,10 +794,10 @@ class NotebookServiceAsyncClient:
 
     async def set_instance_machine_type(
         self,
-        request: Union[service.SetInstanceMachineTypeRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceMachineTypeRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Updates the machine type of a single Instance.
@@ -824,7 +834,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.SetInstanceMachineTypeRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.SetInstanceMachineTypeRequest, dict]]):
                 The request object. Request for setting instance machine
                 type.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -880,10 +890,10 @@ class NotebookServiceAsyncClient:
 
     async def update_instance_config(
         self,
-        request: Union[service.UpdateInstanceConfigRequest, dict] = None,
+        request: Optional[Union[service.UpdateInstanceConfigRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Update Notebook Instance configurations.
@@ -919,7 +929,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.UpdateInstanceConfigRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.UpdateInstanceConfigRequest, dict]]):
                 The request object. Request for updating instance
                 configurations.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -975,10 +985,12 @@ class NotebookServiceAsyncClient:
 
     async def update_shielded_instance_config(
         self,
-        request: Union[service.UpdateShieldedInstanceConfigRequest, dict] = None,
+        request: Optional[
+            Union[service.UpdateShieldedInstanceConfigRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Updates the Shielded instance configuration of a
@@ -1015,7 +1027,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.UpdateShieldedInstanceConfigRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.UpdateShieldedInstanceConfigRequest, dict]]):
                 The request object. Request for updating the Shielded
                 Instance config for a notebook instance. You can only
                 use this method on a stopped instance
@@ -1072,10 +1084,10 @@ class NotebookServiceAsyncClient:
 
     async def set_instance_labels(
         self,
-        request: Union[service.SetInstanceLabelsRequest, dict] = None,
+        request: Optional[Union[service.SetInstanceLabelsRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Replaces all the labels of an Instance.
@@ -1111,7 +1123,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.SetInstanceLabelsRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.SetInstanceLabelsRequest, dict]]):
                 The request object. Request for setting instance labels.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1166,10 +1178,12 @@ class NotebookServiceAsyncClient:
 
     async def update_instance_metadata_items(
         self,
-        request: Union[service.UpdateInstanceMetadataItemsRequest, dict] = None,
+        request: Optional[
+            Union[service.UpdateInstanceMetadataItemsRequest, dict]
+        ] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.UpdateInstanceMetadataItemsResponse:
         r"""Add/update metadata items for an instance.
@@ -1201,7 +1215,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.UpdateInstanceMetadataItemsRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.UpdateInstanceMetadataItemsRequest, dict]]):
                 The request object. Request for adding/changing metadata
                 items  for an instance.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1246,11 +1260,11 @@ class NotebookServiceAsyncClient:
 
     async def delete_instance(
         self,
-        request: Union[service.DeleteInstanceRequest, dict] = None,
+        request: Optional[Union[service.DeleteInstanceRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes a single Instance.
@@ -1286,7 +1300,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.DeleteInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.DeleteInstanceRequest, dict]]):
                 The request object. Request for deleting a notebook
                 instance.
             name (:class:`str`):
@@ -1370,10 +1384,10 @@ class NotebookServiceAsyncClient:
 
     async def start_instance(
         self,
-        request: Union[service.StartInstanceRequest, dict] = None,
+        request: Optional[Union[service.StartInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Starts a notebook instance.
@@ -1409,7 +1423,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.StartInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.StartInstanceRequest, dict]]):
                 The request object. Request for starting a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1465,10 +1479,10 @@ class NotebookServiceAsyncClient:
 
     async def stop_instance(
         self,
-        request: Union[service.StopInstanceRequest, dict] = None,
+        request: Optional[Union[service.StopInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Stops a notebook instance.
@@ -1504,7 +1518,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.StopInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.StopInstanceRequest, dict]]):
                 The request object. Request for stopping a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1560,10 +1574,10 @@ class NotebookServiceAsyncClient:
 
     async def reset_instance(
         self,
-        request: Union[service.ResetInstanceRequest, dict] = None,
+        request: Optional[Union[service.ResetInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Resets a notebook instance.
@@ -1599,7 +1613,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ResetInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ResetInstanceRequest, dict]]):
                 The request object. Request for resetting a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1655,10 +1669,10 @@ class NotebookServiceAsyncClient:
 
     async def report_instance_info(
         self,
-        request: Union[service.ReportInstanceInfoRequest, dict] = None,
+        request: Optional[Union[service.ReportInstanceInfoRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Allows notebook instances to
@@ -1699,7 +1713,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ReportInstanceInfoRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ReportInstanceInfoRequest, dict]]):
                 The request object. Request for notebook instances to
                 report information to Notebooks API.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1755,10 +1769,10 @@ class NotebookServiceAsyncClient:
 
     async def is_instance_upgradeable(
         self,
-        request: Union[service.IsInstanceUpgradeableRequest, dict] = None,
+        request: Optional[Union[service.IsInstanceUpgradeableRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.IsInstanceUpgradeableResponse:
         r"""Check if a notebook instance is upgradable.
@@ -1790,7 +1804,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.IsInstanceUpgradeableRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.IsInstanceUpgradeableRequest, dict]]):
                 The request object. Request for checking if a notebook
                 instance is upgradeable.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1837,11 +1851,11 @@ class NotebookServiceAsyncClient:
 
     async def get_instance_health(
         self,
-        request: Union[service.GetInstanceHealthRequest, dict] = None,
+        request: Optional[Union[service.GetInstanceHealthRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.GetInstanceHealthResponse:
         r"""Check if a notebook instance is healthy.
@@ -1873,7 +1887,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.GetInstanceHealthRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.GetInstanceHealthRequest, dict]]):
                 The request object. Request for checking if a notebook
                 instance is healthy.
             name (:class:`str`):
@@ -1939,10 +1953,10 @@ class NotebookServiceAsyncClient:
 
     async def upgrade_instance(
         self,
-        request: Union[service.UpgradeInstanceRequest, dict] = None,
+        request: Optional[Union[service.UpgradeInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Upgrades a notebook instance to the latest version.
@@ -1978,7 +1992,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.UpgradeInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.UpgradeInstanceRequest, dict]]):
                 The request object. Request for upgrading a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2034,10 +2048,10 @@ class NotebookServiceAsyncClient:
 
     async def rollback_instance(
         self,
-        request: Union[service.RollbackInstanceRequest, dict] = None,
+        request: Optional[Union[service.RollbackInstanceRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Rollbacks a notebook instance to the previous
@@ -2075,7 +2089,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.RollbackInstanceRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.RollbackInstanceRequest, dict]]):
                 The request object. Request for rollbacking a notebook
                 instance
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2131,10 +2145,10 @@ class NotebookServiceAsyncClient:
 
     async def upgrade_instance_internal(
         self,
-        request: Union[service.UpgradeInstanceInternalRequest, dict] = None,
+        request: Optional[Union[service.UpgradeInstanceInternalRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Allows notebook instances to
@@ -2173,7 +2187,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.UpgradeInstanceInternalRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.UpgradeInstanceInternalRequest, dict]]):
                 The request object. Request for upgrading a notebook
                 instance from within the VM
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2229,11 +2243,11 @@ class NotebookServiceAsyncClient:
 
     async def list_environments(
         self,
-        request: Union[service.ListEnvironmentsRequest, dict] = None,
+        request: Optional[Union[service.ListEnvironmentsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListEnvironmentsAsyncPager:
         r"""Lists environments in a project.
@@ -2266,7 +2280,7 @@ class NotebookServiceAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ListEnvironmentsRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ListEnvironmentsRequest, dict]]):
                 The request object. Request for listing environments.
             parent (:class:`str`):
                 Required. Format:
@@ -2342,11 +2356,11 @@ class NotebookServiceAsyncClient:
 
     async def get_environment(
         self,
-        request: Union[service.GetEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.GetEnvironmentRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> environment.Environment:
         r"""Gets details of a single Environment.
@@ -2378,7 +2392,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.GetEnvironmentRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.GetEnvironmentRequest, dict]]):
                 The request object. Request for getting a notebook
                 environment.
             name (:class:`str`):
@@ -2445,13 +2459,13 @@ class NotebookServiceAsyncClient:
 
     async def create_environment(
         self,
-        request: Union[service.CreateEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.CreateEnvironmentRequest, dict]] = None,
         *,
-        parent: str = None,
-        environment: gcn_environment.Environment = None,
-        environment_id: str = None,
+        parent: Optional[str] = None,
+        environment: Optional[gcn_environment.Environment] = None,
+        environment_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a new Environment.
@@ -2493,7 +2507,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.CreateEnvironmentRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.CreateEnvironmentRequest, dict]]):
                 The request object. Request for creating a notebook
                 environment.
             parent (:class:`str`):
@@ -2590,11 +2604,11 @@ class NotebookServiceAsyncClient:
 
     async def delete_environment(
         self,
-        request: Union[service.DeleteEnvironmentRequest, dict] = None,
+        request: Optional[Union[service.DeleteEnvironmentRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes a single Environment.
@@ -2630,7 +2644,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.DeleteEnvironmentRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.DeleteEnvironmentRequest, dict]]):
                 The request object. Request for deleting a notebook
                 environment.
             name (:class:`str`):
@@ -2714,11 +2728,11 @@ class NotebookServiceAsyncClient:
 
     async def list_schedules(
         self,
-        request: Union[service.ListSchedulesRequest, dict] = None,
+        request: Optional[Union[service.ListSchedulesRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListSchedulesAsyncPager:
         r"""Lists schedules in a given project and location.
@@ -2751,7 +2765,7 @@ class NotebookServiceAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ListSchedulesRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ListSchedulesRequest, dict]]):
                 The request object. Request for listing scheduled
                 notebook job.
             parent (:class:`str`):
@@ -2829,11 +2843,11 @@ class NotebookServiceAsyncClient:
 
     async def get_schedule(
         self,
-        request: Union[service.GetScheduleRequest, dict] = None,
+        request: Optional[Union[service.GetScheduleRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> schedule.Schedule:
         r"""Gets details of schedule
@@ -2865,7 +2879,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.GetScheduleRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.GetScheduleRequest, dict]]):
                 The request object. Request for getting scheduled
                 notebook.
             name (:class:`str`):
@@ -2929,11 +2943,11 @@ class NotebookServiceAsyncClient:
 
     async def delete_schedule(
         self,
-        request: Union[service.DeleteScheduleRequest, dict] = None,
+        request: Optional[Union[service.DeleteScheduleRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes schedule and all underlying jobs
@@ -2969,7 +2983,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.DeleteScheduleRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.DeleteScheduleRequest, dict]]):
                 The request object. Request for deleting an Schedule
             name (:class:`str`):
                 Required. Format:
@@ -3052,13 +3066,13 @@ class NotebookServiceAsyncClient:
 
     async def create_schedule(
         self,
-        request: Union[service.CreateScheduleRequest, dict] = None,
+        request: Optional[Union[service.CreateScheduleRequest, dict]] = None,
         *,
-        parent: str = None,
-        schedule: gcn_schedule.Schedule = None,
-        schedule_id: str = None,
+        parent: Optional[str] = None,
+        schedule: Optional[gcn_schedule.Schedule] = None,
+        schedule_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a new Scheduled Notebook in a given project
@@ -3096,7 +3110,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.CreateScheduleRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.CreateScheduleRequest, dict]]):
                 The request object. Request for created scheduled
                 notebooks
             parent (:class:`str`):
@@ -3189,10 +3203,10 @@ class NotebookServiceAsyncClient:
 
     async def trigger_schedule(
         self,
-        request: Union[service.TriggerScheduleRequest, dict] = None,
+        request: Optional[Union[service.TriggerScheduleRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Triggers execution of an existing schedule.
@@ -3228,7 +3242,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.TriggerScheduleRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.TriggerScheduleRequest, dict]]):
                 The request object. Request for created scheduled
                 notebooks
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -3284,11 +3298,11 @@ class NotebookServiceAsyncClient:
 
     async def list_executions(
         self,
-        request: Union[service.ListExecutionsRequest, dict] = None,
+        request: Optional[Union[service.ListExecutionsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListExecutionsAsyncPager:
         r"""Lists executions in a given project and location
@@ -3321,7 +3335,7 @@ class NotebookServiceAsyncClient:
                     print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.ListExecutionsRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.ListExecutionsRequest, dict]]):
                 The request object. Request for listing scheduled
                 notebook executions.
             parent (:class:`str`):
@@ -3399,11 +3413,11 @@ class NotebookServiceAsyncClient:
 
     async def get_execution(
         self,
-        request: Union[service.GetExecutionRequest, dict] = None,
+        request: Optional[Union[service.GetExecutionRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> execution.Execution:
         r"""Gets details of executions
@@ -3435,7 +3449,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.GetExecutionRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.GetExecutionRequest, dict]]):
                 The request object. Request for getting scheduled
                 notebook execution
             name (:class:`str`):
@@ -3501,11 +3515,11 @@ class NotebookServiceAsyncClient:
 
     async def delete_execution(
         self,
-        request: Union[service.DeleteExecutionRequest, dict] = None,
+        request: Optional[Union[service.DeleteExecutionRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Deletes execution
@@ -3541,7 +3555,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.DeleteExecutionRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.DeleteExecutionRequest, dict]]):
                 The request object. Request for deleting a scheduled
                 notebook execution
             name (:class:`str`):
@@ -3625,13 +3639,13 @@ class NotebookServiceAsyncClient:
 
     async def create_execution(
         self,
-        request: Union[service.CreateExecutionRequest, dict] = None,
+        request: Optional[Union[service.CreateExecutionRequest, dict]] = None,
         *,
-        parent: str = None,
-        execution: gcn_execution.Execution = None,
-        execution_id: str = None,
+        parent: Optional[str] = None,
+        execution: Optional[gcn_execution.Execution] = None,
+        execution_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> operation_async.AsyncOperation:
         r"""Creates a new Execution in a given project and
@@ -3669,7 +3683,7 @@ class NotebookServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[google.cloud.notebooks_v1.types.CreateExecutionRequest, dict]):
+            request (Optional[Union[google.cloud.notebooks_v1.types.CreateExecutionRequest, dict]]):
                 The request object. Request to create notebook execution
             parent (:class:`str`):
                 Required. Format:
