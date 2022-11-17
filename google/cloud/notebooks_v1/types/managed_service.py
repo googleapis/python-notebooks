@@ -15,9 +15,11 @@
 #
 from typing import MutableMapping, MutableSequence
 
+from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
+from google.cloud.notebooks_v1.types import diagnostic_config as gcn_diagnostic_config
 from google.cloud.notebooks_v1.types import event as gcn_event
 from google.cloud.notebooks_v1.types import runtime as gcn_runtime
 
@@ -33,9 +35,12 @@ __protobuf__ = proto.module(
         "StopRuntimeRequest",
         "SwitchRuntimeRequest",
         "ResetRuntimeRequest",
+        "UpgradeRuntimeRequest",
         "ReportRuntimeEventRequest",
+        "UpdateRuntimeRequest",
         "RefreshRuntimeTokenInternalRequest",
         "RefreshRuntimeTokenInternalResponse",
+        "DiagnoseRuntimeRequest",
     },
 )
 
@@ -271,6 +276,29 @@ class ResetRuntimeRequest(proto.Message):
     )
 
 
+class UpgradeRuntimeRequest(proto.Message):
+    r"""Request for upgrading a Managed Notebook Runtime to the latest
+    version. option (google.api.message_visibility).restriction =
+    "TRUSTED_TESTER,SPECIAL_TESTER";
+
+    Attributes:
+        name (str):
+            Required. Format:
+            ``projects/{project_id}/locations/{location}/runtimes/{runtime_id}``
+        request_id (str):
+            Idempotent request UUID.
+    """
+
+    name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    request_id: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+
+
 class ReportRuntimeEventRequest(proto.Message):
     r"""Request for reporting a Managed Notebook Event.
 
@@ -298,6 +326,59 @@ class ReportRuntimeEventRequest(proto.Message):
         proto.MESSAGE,
         number=3,
         message=gcn_event.Event,
+    )
+
+
+class UpdateRuntimeRequest(proto.Message):
+    r"""Request for updating a Managed Notebook configuration.
+
+    Attributes:
+        runtime (google.cloud.notebooks_v1.types.Runtime):
+            Required. The Runtime to be updated.
+        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            Required. Specifies the path, relative to ``Runtime``, of
+            the field to update. For example, to change the software
+            configuration kernels, the ``update_mask`` parameter would
+            be specified as ``software_config.kernels``, and the
+            ``PATCH`` request body would specify the new value, as
+            follows:
+
+            ::
+
+                {
+                  "software_config":{
+                    "kernels": [{
+                       'repository':
+                       'gcr.io/deeplearning-platform-release/pytorch-gpu', 'tag':
+                       'latest' }],
+                    }
+                }
+
+            Currently, only the following fields can be updated:
+
+            -  software_config.kernels
+            -  software_config.post_startup_script
+            -  software_config.custom_gpu_driver_path
+            -  software_config.idle_shutdown
+            -  software_config.idle_shutdown_timeout
+            -  software_config.disable_terminal
+        request_id (str):
+            Idempotent request UUID.
+    """
+
+    runtime: gcn_runtime.Runtime = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=gcn_runtime.Runtime,
+    )
+    update_mask: field_mask_pb2.FieldMask = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=field_mask_pb2.FieldMask,
+    )
+    request_id: str = proto.Field(
+        proto.STRING,
+        number=3,
     )
 
 
@@ -342,6 +423,29 @@ class RefreshRuntimeTokenInternalResponse(proto.Message):
         proto.MESSAGE,
         number=2,
         message=timestamp_pb2.Timestamp,
+    )
+
+
+class DiagnoseRuntimeRequest(proto.Message):
+    r"""Request for creating a notebook instance diagnostic file.
+
+    Attributes:
+        name (str):
+            Required. Format:
+            ``projects/{project_id}/locations/{location}/runtimes/{runtimes_id}``
+        diagnostic_config (google.cloud.notebooks_v1.types.DiagnosticConfig):
+            Required. Defines flags that are used to run
+            the diagnostic tool
+    """
+
+    name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    diagnostic_config: gcn_diagnostic_config.DiagnosticConfig = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gcn_diagnostic_config.DiagnosticConfig,
     )
 
 

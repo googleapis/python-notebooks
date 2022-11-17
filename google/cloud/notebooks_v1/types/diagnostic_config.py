@@ -17,11 +17,10 @@ from typing import MutableMapping, MutableSequence
 
 import proto  # type: ignore
 
-
 __protobuf__ = proto.module(
-    package='google.cloud.notebooks.v1',
+    package="google.cloud.notebooks.v1",
     manifest={
-        'DiagnosticConfig',
+        "DiagnosticConfig",
     },
 )
 

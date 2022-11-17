@@ -516,7 +516,25 @@ class RuntimeSoftwareConfig(proto.Message):
             image is available in an image family.
 
             This field is a member of `oneof`_ ``_upgradeable``.
+        post_startup_script_behavior (google.cloud.notebooks_v1.types.RuntimeSoftwareConfig.PostStartupScriptBehavior):
+            Behavior for the post startup script.
+        disable_terminal (bool):
+            Bool indicating whether JupyterLab terminal
+            will be available or not. Default: False
+
+            This field is a member of `oneof`_ ``_disable_terminal``.
+        version (str):
+            Output only. version of boot image such as
+            M100, from release label of the image.
+
+            This field is a member of `oneof`_ ``_version``.
     """
+
+    class PostStartupScriptBehavior(proto.Enum):
+        r"""Behavior for the post startup script."""
+        POST_STARTUP_SCRIPT_BEHAVIOR_UNSPECIFIED = 0
+        RUN_EVERY_START = 1
+        DOWNLOAD_AND_RUN_EVERY_START = 2
 
     notebook_upgrade_schedule: str = proto.Field(
         proto.STRING,
@@ -556,6 +574,21 @@ class RuntimeSoftwareConfig(proto.Message):
     upgradeable: bool = proto.Field(
         proto.BOOL,
         number=9,
+        optional=True,
+    )
+    post_startup_script_behavior: PostStartupScriptBehavior = proto.Field(
+        proto.ENUM,
+        number=10,
+        enum=PostStartupScriptBehavior,
+    )
+    disable_terminal: bool = proto.Field(
+        proto.BOOL,
+        number=11,
+        optional=True,
+    )
+    version: str = proto.Field(
+        proto.STRING,
+        number=12,
         optional=True,
     )
 
@@ -688,8 +721,8 @@ class VirtualMachineConfig(proto.Message):
 
             A full URL or partial URI. Examples:
 
-            -  ``https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default``
-            -  ``projects/[project_id]/regions/global/default``
+            -  ``https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default``
+            -  ``projects/[project_id]/global/networks/default``
 
             Runtimes are managed resources inside Google Infrastructure.
             Runtimes support the following network configurations:

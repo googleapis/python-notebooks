@@ -18,6 +18,7 @@ from typing import MutableMapping, MutableSequence
 from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
+from google.cloud.notebooks_v1.types import diagnostic_config as gcn_diagnostic_config
 from google.cloud.notebooks_v1.types import environment as gcn_environment
 from google.cloud.notebooks_v1.types import execution as gcn_execution
 from google.cloud.notebooks_v1.types import instance as gcn_instance
@@ -54,6 +55,7 @@ __protobuf__ = proto.module(
         "RollbackInstanceRequest",
         "UpgradeInstanceInternalRequest",
         "ListEnvironmentsRequest",
+        "DiagnoseInstanceRequest",
         "ListEnvironmentsResponse",
         "GetEnvironmentRequest",
         "CreateEnvironmentRequest",
@@ -751,6 +753,29 @@ class ListEnvironmentsRequest(proto.Message):
     page_token: str = proto.Field(
         proto.STRING,
         number=3,
+    )
+
+
+class DiagnoseInstanceRequest(proto.Message):
+    r"""Request for creating a notebook instance diagnostic file.
+
+    Attributes:
+        name (str):
+            Required. Format:
+            ``projects/{project_id}/locations/{location}/instances/{instance_id}``
+        diagnostic_config (google.cloud.notebooks_v1.types.DiagnosticConfig):
+            Required. Defines flags that are used to run
+            the diagnostic tool
+    """
+
+    name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    diagnostic_config: gcn_diagnostic_config.DiagnosticConfig = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gcn_diagnostic_config.DiagnosticConfig,
     )
 
 

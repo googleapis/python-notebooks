@@ -444,6 +444,11 @@ class IsInstanceUpgradeableResponse(proto.Message):
             only be populated if field upgradeable is true.
         upgrade_info (str):
             Additional information about upgrade.
+        upgrade_image (str):
+            The new image self link this instance will be
+            upgraded to if calling the upgrade endpoint.
+            This field will only be populated if field
+            upgradeable is true.
     """
 
     upgradeable: bool = proto.Field(
@@ -457,6 +462,10 @@ class IsInstanceUpgradeableResponse(proto.Message):
     upgrade_info: str = proto.Field(
         proto.STRING,
         number=3,
+    )
+    upgrade_image: str = proto.Field(
+        proto.STRING,
+        number=4,
     )
 
 
